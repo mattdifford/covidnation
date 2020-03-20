@@ -5,7 +5,7 @@
         {% for brand in brands %}
         {% capture image_url %}/images/brand-{{brand}}.png{% endcapture %}
         <div class="brands-strip__brand">
-            <img src={{image_url}} />
+            <img src={{image_url}} alt="{{brand}}"/>
         </div>
         {% endfor %}
     </div>
