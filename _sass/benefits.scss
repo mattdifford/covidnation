@@ -1,0 +1,29 @@
+.benefits-strip {
+  padding: 50px 0;
+  text-align: center;
+  &__wrapper {
+    padding: 0 100px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__benefit {
+    flex: 0 1 (100% / 3);
+    padding: 25px;
+    $border_radius_small: 5px;
+    $border_radius_large: 75px;
+    &-image {
+      padding: 50px;
+      background: $colour_primary;
+      border-radius: $border_radius_small $border_radius_large $border_radius_small $border_radius_large;
+      display: inline-block;
+    }
+    &:nth-child(odd) {
+      .benefits-strip__benefit {
+        &-image {
+          background: $colour_secondary;
+          border-radius: $border_radius_large $border_radius_small $border_radius_large $border_radius_small;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<div class="brands-strip">
+    <h3>{{site.title}} has joined forces with top brands</h3>
+    <div class="brands-strip__lists">
+        {% assign brands = site.brands | split:',' %}
+        {% for brand in brands %}
+        {% capture image_url %}/images/brand-{{brand}}.png{% endcapture %}
+        <div class="brands-strip__brand">
+            {% include picture.html url=image_url alt=brand %}
+        </div>
+        {% endfor %}
+    </div>
+</div>

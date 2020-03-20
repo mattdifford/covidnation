@@ -13,13 +13,10 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: ZURU Group
+title: lifeSOS
 email: info@zurugroup.com
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://www.zurugroup.com" # the base hostname & protocol for your site, e.g. http://example.com
-
-company_number: 10852341
-vat_number: 293058193
+url: "https://www.lifesos.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Email signatures
 email_disclaimer: This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you are not the intended recipient, you should not copy it, re-transmit it, use it or disclose its contents, but should return it to the sender immediately and delete your copy from your system. Zuru Group does not accept legal responsibility for the contents of this message. Any views or opinions presented are solely those of the author and do not necessarily represent those of Zuru Group
@@ -45,6 +42,8 @@ facebook_username: CHANGE ME
 instagram_username: CHANGE ME
 youtube_username: CHANGE ME
 
+
+brands: 'aviva,landg,lv,royal-london,thinkmoney,vitality,zurich'
 # Mastodon instances
 # mastodon:
 # - username: jekyll
@@ -68,7 +67,6 @@ youtube_username: CHANGE ME
 plugins:
   - jekyll-include-cache
   - jekyll-webp
-
 
 ############################################################
 # Site configuration for the WebP Generator Plugin

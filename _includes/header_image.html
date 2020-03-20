@@ -1,10 +1,13 @@
 <div class="header-image">
-    <div class="header-image__wave">
-        {%include wave-white.svg %}
-    </div>
     <div class="container">
         <div class="header-image__wrapper">
-            <h1 class="header-image__text">{{include.text}}</h1>
+            <div class="header-image__logo">
+                {% include picture.html url="/images/header.png" %}
+            </div>
+            <div class="header-image__content">
+                <h1>Life made <strong>simple.</strong></h1>
+                {% include form.html %}
+            </div>
         </div>
     </div>
 </div>

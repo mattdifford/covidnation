@@ -1,0 +1,28 @@
+<footer class="footer">
+    <div class="container">
+        <div class="footer__wrapper">
+            <div class="footer__col footer__col--logo">
+                {%include picture.html url="/images/logo-white.png" alt=site.title class="footer__logo" %}
+            </div>
+            <div class="footer__col">
+                <p>Copyright &copy; {{site.title}} {{ "now" | date: "%Y" }}</p>
+            </div>
+            <div class="footer__col footer__col--nav">
+                <nav class="footer__nav">
+                    <a href="/privacy-notice" class="footer__nav-link">Privacy Policy</a>
+                    <a href="/terms" class="footer__nav-link">Terms & Conditions</a>
+                </nav>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="footer__col footer__col--social">
+                <a class="footer__social" title="Facebook" href="{{site.facebook_url | absolute_url}}" target="_blank"
+                    rel="external noopener"><span class="icon-facebook"></span></a>
+                <a class="footer__social" title="Twitter" href="{{site.twitter_url | absolute_url}}" target="_blank"
+                    rel="external noopener"><span class="icon-twitter bg"></span></a class="footer__social">
+                <a class="footer__social" title="Instagram" href="{{site.instagram_url | absolute_url}}" target="_blank"
+                    rel="external noopener"><span class="icon-instagram bg"></span></a class="footer__social">
+            </div>
+        </div>
+    </div>
+</footer>

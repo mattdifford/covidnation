@@ -8,7 +8,7 @@ $(document).ready(function () {
     function onIntersection(entries) {
         entries.forEach(entry => {
             if (entry.intersectionRatio > 0) {
-                observer.unobserve(entry.target);
+
                 handleScrolledIntoView(entry.target);
             }
         });
@@ -24,7 +24,27 @@ $(document).ready(function () {
     }
     function handleScrolledIntoView(target) {
         target.classList.add('scrolled');
+
     }
+
+    var bodystrips = document.querySelectorAll('.bodyscroll');
+    bodystripsobserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.intersectionRatio > 0) {
+                if (typeof entry.target.attributes['data-scroll-alt'] != 'undefined') {
+                    if (entry.target.attributes['data-scroll-alt'].value == "true") {
+                        $('body').addClass('alt-colour');
+                    } else {
+                        $('body').removeClass('alt-colour');
+                    }
+                }
+            }
+        });
+    });
+
+    bodystrips.forEach(strip => {
+        bodystripsobserver.observe(strip);
+    });
 
     $('a').on("click", function () {
         if ($(this).attr("href").charAt(0) === '#') {

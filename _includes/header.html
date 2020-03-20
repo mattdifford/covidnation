@@ -1,3 +1,14 @@
 <div class="header">
-    <a class="header__logo" href="/">{% include logo.svg %}</a>
+    <div class="container">
+        <div class="header__wrapper">
+            <div></div>
+            <a class="header__logo" href="/"
+                title="{{site.title}}">{% include picture.html url="/images/logo.png" %}</a>
+            <nav class="header__nav">
+                <a class="header__nav-link" href="/">About</a>
+                <a class="header__nav-link" href="/">What we do</a>
+                <a class="header__nav-link" href="/">Contact us</a>
+            </nav>
+        </div>
+    </div>
 </div>

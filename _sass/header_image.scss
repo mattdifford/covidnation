@@ -1,40 +1,32 @@
 .header-image {
-  overflow: hidden;
-  position: relative;
+  display: block;
+  padding: 120px 0 20px;
   color: #fff;
-  &__wave {
-    opacity: 1;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 120%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    min-width: 1750px;
-  }
-  .container,
-  &__wrapper {
+  .container {
     height: 100%;
   }
   &__wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
+    height: 100%;
   }
-  &__text {
+  &__logo,
+  &__content {
     opacity: 1;
-    font-size: 100px;
-    strong {
-      color: $colour_secondary;
-      display: block;
-    }
   }
-  @include in_size($mobile) {
-    &__wave {
-      margin-left: -230px;
-    }
-    &__text {
-      font-size: 40px;
+  &__logo {
+    padding-right: 50px;
+  }
+  &__content {
+    padding-left: 50px;
+    h1 {
+      font-size: 125px;
+      line-height: 0.9;
+      margin: 0;
+      strong {
+        text-transform: uppercase;
+        line-height: 1.3;
+      }
     }
   }
 }

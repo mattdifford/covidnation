@@ -1,0 +1,14 @@
+.device-strip {
+  padding: 150px 0;
+  background: $colour_light_grey;
+  &__text {
+    h2 {
+      font-size: 45px;
+      line-height: 1;
+      margin: 0 0 10px;
+      padding-bottom: 30px;
+      border-bottom: 3px solid $colour_primary;
+      display: inline-block;
+    }
+  }
+}

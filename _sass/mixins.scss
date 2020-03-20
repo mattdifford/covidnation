@@ -49,5 +49,7 @@ $mobile: (
 }
 
 @mixin media($map) {
-  @include in_size($map);
+  @include in_size($map){
+    @content;
+  }
 }

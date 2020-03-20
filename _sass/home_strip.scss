@@ -1,0 +1,35 @@
+html.webp {
+  .home-strip {
+    background-image: url("/images/family.webp");
+  }
+}
+
+html.no-webp {
+  .home-strip {
+    background-image: url("/images/family.jpg");
+  }
+}
+
+.home-strip {
+  padding: 200px 0;
+  color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  &__title {
+    padding-right: 50px;
+    border-right: 3px solid $colour_primary;
+    h2 {
+      font-size: 90px;
+      line-height: 1;
+      margin: 0;
+    }
+  }
+  &__text {
+    padding-left: 50px;
+    p {
+      font-size: 22px;
+      font-weight: 500;
+    }
+  }
+}
