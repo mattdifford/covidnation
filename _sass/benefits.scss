@@ -11,17 +11,34 @@
     padding: 25px;
     $border_radius_small: 5px;
     $border_radius_large: 75px;
+    position: relative;
     &-image {
       padding: 50px;
       background: $colour_primary;
-      border-radius: $border_radius_small $border_radius_large $border_radius_small $border_radius_large;
       display: inline-block;
+      border-radius: $border_radius_small;
+      transition: border-radius 0.3s ease-in-out 0.3s;
+    }
+    &.scrolled {
+      .benefits-strip__benefit {
+        &-image {
+          border-radius: $border_radius_small $border_radius_large
+            $border_radius_small $border_radius_large;
+        }
+      }
     }
     &:nth-child(odd) {
       .benefits-strip__benefit {
         &-image {
           background: $colour_secondary;
-          border-radius: $border_radius_large $border_radius_small $border_radius_large $border_radius_small;
+        }
+      }
+      &.scrolled {
+        .benefits-strip__benefit {
+          &-image {
+            border-radius: $border_radius_large $border_radius_small
+              $border_radius_large $border_radius_small;
+          }
         }
       }
     }

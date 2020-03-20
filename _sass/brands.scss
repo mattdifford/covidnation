@@ -11,14 +11,21 @@
   }
   &__lists {
     background: $colour_primary;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 25px 0;
     overflow: hidden;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    .slick-track {
+      display: flex;
+      align-items: center;
+    }
   }
   &__brand {
     margin: 0 50px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    img {
+      max-width: 100%;
+    }
   }
 }

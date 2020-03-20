@@ -16,6 +16,10 @@
   }
   &__logo {
     padding-right: 50px;
+    picture,
+    img {
+      max-width: 100%;
+    }
   }
   &__content {
     padding-left: 50px;
