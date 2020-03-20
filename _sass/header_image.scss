@@ -33,4 +33,20 @@
       }
     }
   }
+  @include in_size($mobile) {
+    min-height: 100vh;
+    height: auto;
+    &__wrapper {
+      flex-wrap: wrap;
+    }
+    &__logo {
+      padding: 0 0 40px;
+    }
+    &__content {
+      padding-left: 0;
+      h1 {
+        font-size: 65px;
+      }
+    }
+  }
 }

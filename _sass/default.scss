@@ -23,15 +23,28 @@ a {
     justify-content: center;
     align-items: center;
     position: relative;
+    @include in_size($mobile) {
+      justify-content: space-between;
+      .spacer {
+        display: none;
+      }
+    }
   }
   &__logo {
-    margin: 0 auto;
+    @include in_size($md) {
+      margin: 0 auto;
+    }
   }
   &__nav {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    @include in_size($md) {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    @include in_size($xs) {
+      display: none;
+    }
     &-link {
       margin: 0 15px;
       color: $colour_dark_grey;

@@ -43,4 +43,17 @@
       }
     }
   }
+  @include in_size($mobile) {
+    &__wrapper {
+      padding: 0;
+    }
+    &__benefit {
+      flex: 0 1 50%;
+    }
+  }
+  @include in_size($xs) {
+    &__benefit {
+      flex: 0 1 100%;
+    }
+  }
 }

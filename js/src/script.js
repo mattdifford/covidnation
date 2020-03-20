@@ -41,6 +41,15 @@ $(document).ready(function () {
         arrows: false,
         speed: 1500,
         lazyLoad: 'ondemand',
+        mobileFirst:true,
+        responsive: [
+            {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 3
+                }
+            }
+        ]
     });
 });
 

@@ -21,11 +21,19 @@
   }
   &__brand {
     margin: 0 50px;
-    display: flex;
-    align-items: center;
-    height: 100%;
     img {
       max-width: 100%;
+    }
+  }
+  @include in_size($mobile) {
+    padding: 40px 0;
+    h3 {
+      padding: 0 15px 30px;
+      max-width: none;
+      font-size: 25px;
+    }
+    &__brand {
+      margin: 0 25px;
     }
   }
 }
