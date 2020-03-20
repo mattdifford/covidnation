@@ -40,6 +40,7 @@ $(document).ready(function () {
         dots: false,
         arrows: false,
         speed: 1500,
+        lazyLoad: 'ondemand',
     });
 });
 
