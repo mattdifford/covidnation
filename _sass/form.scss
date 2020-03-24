@@ -26,6 +26,15 @@
       color: $colour_secondary;
     }
   }
+  @include in_size($xs) {
+    &__field-wrapper {
+      flex-wrap: wrap;
+    }
+    &__submit {
+      margin: 10px 0 0;
+      flex: 1 0 100%;
+    }
+  }
 }
 
 .field {

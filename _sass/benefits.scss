@@ -44,6 +44,7 @@
     }
   }
   @include in_size($mobile) {
+    padding: 15px 0;
     &__wrapper {
       padding: 0;
     }

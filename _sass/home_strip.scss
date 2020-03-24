@@ -16,6 +16,9 @@ html.no-webp {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  .row {
+    align-items: flex-start;
+  }
   &__title {
     padding-right: 50px;
     border-right: 3px solid $colour_primary;
@@ -35,12 +38,17 @@ html.no-webp {
   @include in_size($mobile) {
     padding: 40px 15px;
     &__title {
-      padding: 0 0 30px;
+      padding-bottom: 20px;
       border-right: none;
       border-bottom: 3px solid $colour_primary;
       h2 {
         font-size: 40px;
       }
+    }
+  }
+  @include in_size($xs) {
+    &__title {
+      padding-left: 0;
     }
     &__text {
       padding: 0;

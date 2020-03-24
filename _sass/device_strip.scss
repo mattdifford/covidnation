@@ -11,4 +11,7 @@
       display: inline-block;
     }
   }
+  @include in_size($mobile) {
+    padding: 40px 0;
+  }
 }

@@ -144,4 +144,20 @@ a {
     display: flex;
     justify-content: flex-end;
   }
+  @include in_size($xs) {
+    padding: 30px 0;
+    &__col {
+      margin: 10px 0;
+      p {
+        margin: 0;
+      }
+      &--logo {
+        padding: 0;
+      }
+    }
+    &__nav,
+    &__bottom {
+      justify-content: center;
+    }
+  }
 }
