@@ -33,7 +33,6 @@ $(document).ready(function () {
     });
     $('.brands-strip__lists').slick({
         infinite: true,
-        slidesToShow: 5,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 1,
@@ -44,9 +43,21 @@ $(document).ready(function () {
         mobileFirst:true,
         responsive: [
             {
-                breakpoint: 767,
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 5
+                }
+            },
+            {
+                breakpoint: 400,
                 settings: {
                     slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 320,
+                settings: {
+                    slidesToShow: 1
                 }
             }
         ]
