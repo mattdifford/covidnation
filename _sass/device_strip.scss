@@ -1,6 +1,16 @@
 .device-strip {
-  padding: 150px 0;
+  padding: 100px 0;
   background: $colour_light_grey;
+  text-align: center;
+  .row {
+    justify-content: center;
+  }
+  img {
+    max-width: 100%;
+  }
+  p + p{
+    margin-top: 45px;
+  }
   &__text {
     h2 {
       font-size: 45px;
