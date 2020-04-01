@@ -8,12 +8,12 @@
   img {
     max-width: 100%;
   }
-  p + p{
+  p + p {
     margin-top: 45px;
   }
   &__text {
     h2 {
-      font-size: 45px;
+      font-size: 40px;
       line-height: 1;
       margin: 0 0 10px;
       padding-bottom: 30px;
@@ -23,5 +23,10 @@
   }
   @include in_size($mobile) {
     padding: 40px 0;
+    &__text {
+      h2 {
+        font-size: 25px;
+      }
+    }
   }
 }
