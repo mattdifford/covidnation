@@ -6,11 +6,21 @@
     {%- include header.html -%}
     {%- include header_image.html -%}
     {%- include device_strip.html -%}
+    {%- include features.html -%}
     {%- include benefits.html -%}
     {%- include home_strip.html -%}
     {%- include brands.html -%}
     {%- include footer.html -%}
     {%- include foot.html layout=page.layout -%}
+    <script>
+        $('.features-strip__wrapper').slick({
+            dots: true,
+            fade: true,
+            cssEase: 'ease',
+            prevArrow:'<span class="slick-prev icon-chevron-left"></span>',
+            nextArrow:'<span class="slick-next icon-chevron-right"></span>'
+        });
+    </script>
 </body>
 
 </html>
