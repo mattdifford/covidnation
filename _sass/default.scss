@@ -161,3 +161,26 @@ a {
     }
   }
 }
+
+.page {
+  padding: 100px 0 30px;
+  table {
+    border-top: 1px solid $colour_dark_grey;
+    border-left: 1px solid $colour_dark_grey;
+    border-collapse: collapse;
+    tr {
+      display: flex;
+      th,
+      td {
+        flex: 1 1 100%;
+      }
+    }
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid $colour_dark_grey;
+      border-left: none;
+      border-top: none;
+    }
+  }
+}

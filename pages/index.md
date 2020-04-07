@@ -1,5 +1,5 @@
 ---
 layout: home
-description: Page Description
+description: Sign-up for alerts about lifeSOS
 permalink: /
 ---
