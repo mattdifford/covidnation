@@ -1,11 +1,11 @@
 items:
   - title: profile
-    text: Build your lifeSOS profile
+    text: Build and personalise your own lifeSOS profile
   - title: graph
-    text: Track your rewards
+    text: Track your monthly notifications, spend and rewards
   - title: statement
-    text: View detailed statements
+    text: View your statement and see how much cashback you have earned
   - title: toolkit
-    text: Access your personalised toolkit
+    text: Utilise your personalised toolkit. Selected by you, used by you.
   - title: wallet
-    text: Use your lifeSOS wallet, powered by thinkmoney
+    text: Access your cashback rewards through your wallet

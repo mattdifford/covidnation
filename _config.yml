@@ -37,10 +37,10 @@ sass:
   sass_dir: _sass
 
 # social links
-twitter_username: CHANGE ME
-facebook_username: CHANGE ME
-instagram_username: CHANGE ME
-youtube_username: CHANGE ME
+twitter_url: https://twitter.com/yourlifesos 
+facebook_url: https://www.facebook.com/yourlifesos
+instagram_url: https://www.instagram.com/yourlifesos/
+youtube_url: CHANGE ME
 
 
 brands: '2u,afh,apple,barclaycard,gus,lgc,o2,ou,samsung,secretescapes,vitality,vodafone'
