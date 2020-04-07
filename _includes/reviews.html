@@ -1,0 +1,12 @@
+<div class="reviews-strip">
+    <div class="container">
+        <h2 class="reviews-strip__title">Don't just take our word for it</h2>
+        <div class="reviews-strip__wrapper">
+            {% for review in site.data.reviews.items %}
+            <div class="reviews-strip__review">
+                <p class="reviews-strip__review-text">{{review.text}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

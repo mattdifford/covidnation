@@ -10,10 +10,18 @@
     {%- include benefits.html -%}
     {%- include home_strip.html -%}
     {%- include brands.html -%}
+    {%- include reviews.html -%}
     {%- include footer.html -%}
     {%- include foot.html layout=page.layout -%}
     <script>
         $('.features-strip__wrapper').slick({
+            dots: true,
+            fade: true,
+            cssEase: 'ease',
+            prevArrow:'<span class="slick-prev icon-chevron-left"></span>',
+            nextArrow:'<span class="slick-next icon-chevron-right"></span>'
+        });
+        $('.reviews-strip__wrapper').slick({
             dots: true,
             fade: true,
             cssEase: 'ease',
