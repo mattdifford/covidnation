@@ -4,9 +4,10 @@
   background: $colour_primary;
   color: #fff;
   &__title {
-    font-size: 45px;
-    margin: 0 0 35px;
-    padding-bottom: 35px;
+    font-size: 35px;
+    line-height: 1;
+    margin: 0 0 30px;
+    padding-bottom: 30px;
     border-bottom: 3px solid #fff;
     display: inline-block;
   }
@@ -18,6 +19,10 @@
       font-weight: 600;
     }
   }
+}
+picture,
+img {
+  max-width: 100%;
 }
 
 .slick-track {

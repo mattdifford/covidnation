@@ -23,7 +23,7 @@ html.no-webp {
     padding-right: 50px;
     border-right: 3px solid $colour_primary;
     h2 {
-      font-size: 70px;
+      font-size: 60px;
       line-height: 1;
       margin: 0;
     }
@@ -31,24 +31,22 @@ html.no-webp {
   &__text {
     padding-left: 50px;
     p {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 500;
+      margin: 0 0 25px;
     }
   }
-  @include in_size($mobile) {
+  @include in_size($xs) {
     padding: 40px 15px;
     &__title {
       padding-bottom: 20px;
       border-right: none;
       border-bottom: 3px solid $colour_primary;
+      padding-left: 0;
+      margin-bottom: 20px;
       h2 {
         font-size: 40px;
       }
-    }
-  }
-  @include in_size($xs) {
-    &__title {
-      padding-left: 0;
     }
     &__text {
       padding: 0;
