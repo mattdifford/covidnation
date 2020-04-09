@@ -12,6 +12,7 @@
     display: inline-block;
   }
   &__review {
+    height: auto !important;
     &-text {
       padding: 50px;
       background: #fff;
@@ -21,16 +22,18 @@
       margin: 0 auto;
       border-radius: 22px;
       box-shadow: 0px 3px 6px rgba(#000, 0.16);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       @include in_size($xs) {
         width: 100%;
       }
     }
   }
-}
-.slick-track {
-  display: flex !important;
-  align-items: center;
-}
+  .slick-track {
+    display: flex !important;
+  }
 
 .slick-arrow {
   position: absolute;
