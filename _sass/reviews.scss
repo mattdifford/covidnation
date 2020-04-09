@@ -12,7 +12,7 @@
     display: inline-block;
   }
   &__review {
-    height: auto !important;
+    height: 100%;
     &-text {
       padding: 50px;
       background: #fff;
@@ -25,7 +25,6 @@
       height: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
       @include in_size($xs) {
         width: 100%;
       }
@@ -33,45 +32,47 @@
   }
   .slick-track {
     display: flex !important;
+    align-items: center;
   }
 
-.slick-arrow {
-  position: absolute;
-  bottom: 17px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    color: $colour_light_grey;
-  }
-  &.slick-next {
-    left: 50%;
-    margin-left: 100px;
-  }
-  &.slick-prev {
-    right: 50%;
-    margin-right: 100px;
-  }
-}
-.slick-dots {
-  list-style: none;
-  display: inline-flex;
-  padding: 0;
-  li {
-    button {
-      display: inline-block;
-      background: #fff;
-      border: #fff;
-      border-radius: 50%;
-      text-indent: -9999px;
-      width: 20px;
-      height: 20px;
-      margin: 0 5px;
-      cursor: pointer;
+  .slick-arrow {
+    position: absolute;
+    bottom: 17px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      color: $colour_light_grey;
     }
-    &.slick-active {
+    &.slick-next {
+      left: 50%;
+      margin-left: 100px;
+    }
+    &.slick-prev {
+      right: 50%;
+      margin-right: 100px;
+    }
+  }
+  .slick-dots {
+    list-style: none;
+    display: inline-flex;
+    padding: 0;
+    li {
       button {
-        background: $colour_secondary;
+        display: inline-block;
+        background: #fff;
+        border: #fff;
+        border-radius: 50%;
+        text-indent: -9999px;
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+      &.slick-active {
+        button {
+          background: $colour_secondary;
+        }
       }
     }
   }
