@@ -12,7 +12,7 @@
     display: inline-block;
   }
   &__review {
-    height: 100%;
+    height: auto !important;
     &-text {
       padding: 50px;
       background: #fff;
@@ -32,7 +32,6 @@
   }
   .slick-track {
     display: flex !important;
-    align-items: center;
   }
 
   .slick-arrow {
