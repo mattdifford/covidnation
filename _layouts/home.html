@@ -4,30 +4,39 @@
 
 <body>
     {%- include header.html -%}
-    {%- include header_image.html -%}
-    {%- include device_strip.html -%}
-    {%- include features.html -%}
-    {%- include benefits.html -%}
-    {%- include home_strip.html -%}
-    {%- include brands.html -%}
-    {%- include reviews.html -%}
-    {%- include contact.html -%}
-    {%- include footer.html -%}
+    <div class="container">
+        {%- include table.html -%}
+    </div>
     {%- include foot.html layout=page.layout -%}
     <script>
-        $('.features-strip__wrapper').slick({
-            dots: true,
-            fade: true,
-            cssEase: 'ease',
-            prevArrow:'<span class="slick-prev icon-chevron-left"></span>',
-            nextArrow:'<span class="slick-next icon-chevron-right"></span>'
-        });
-        $('.reviews-strip__wrapper').slick({
-            dots: true,
-            fade: true,
-            cssEase: 'ease',
-            prevArrow:'<span class="slick-prev icon-chevron-left"></span>',
-            nextArrow:'<span class="slick-next icon-chevron-right"></span>'
+        var $repeater = $('#table-repeater');
+        $.get("{{site.api_url}}", function (data) {
+            data.forEach(function (element, index) {
+                var $new_row = $repeater.clone();
+                $new_row.attr("id", "");
+                $new_row.removeClass('data-table__row--template');
+                var columns = $new_row.find('.data-table__column');
+                columns.each(function () {
+                    var name = $(this).attr("data-column");
+                    if (typeof element[name] !== "undefined") {
+                        if (typeof element[name] == "number") {
+                            $(this).html(element[name].toLocaleString());
+                        } else {
+                            if (element[name] === "NA") {
+                                $(this).html("No data");
+                            } else {
+                                if ($(this).hasClass('data-table__column--datetime')){
+                                    var date = new Date(element[name]);
+                                    $(this).html(date.toLocaleString());
+                                } else {
+                                    $(this).html((element[name] ? element[name] : "No data"));
+                                }
+                            }
+                        }
+                    }
+                });
+                $repeater.before($new_row);
+            });
         });
     </script>
 </body>

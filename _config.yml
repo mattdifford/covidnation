@@ -13,14 +13,11 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: lifeSOS
+title: CovidNation
 email: info@zurugroup.com
-email_partnerships: parterships@lifesos.co.uk
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://www.lifesos.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
-
-# Email signatures
-email_disclaimer: This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you are not the intended recipient, you should not copy it, re-transmit it, use it or disclose its contents, but should return it to the sender immediately and delete your copy from your system. Zuru Group does not accept legal responsibility for the contents of this message. Any views or opinions presented are solely those of the author and do not necessarily represent those of Zuru Group
+url: "https://www.covidnation.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
+api_url: https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true
 
 # Build settings
 theme: minima
@@ -43,27 +40,6 @@ facebook_url: https://www.facebook.com/yourlifesos
 instagram_url: https://www.instagram.com/yourlifesos/
 youtube_url: CHANGE ME
 
-
-brands: 'bt,sky,virgin,vodafone,britishgas,edf,npower,eon,rl,lg,aviva,vitality'
-# Mastodon instances
-# mastodon:
-# - username: jekyll
-#   instance: example.com
-# - username: jekyll2
-#   instance: example.com
-
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
 
 plugins:
   - jekyll-include-cache
