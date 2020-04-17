@@ -1,12 +1,17 @@
+{% assign brands = site.brands | split:',' %}
+{% if brands.size > 0 %}
 <div class="brands-strip">
-    <h3>{{site.title}} has joined forces with top brands</h3>
-    {% assign brands = site.brands | split:',' %}
-    <div class="brands-strip__lists">
-        {% for brand in brands %}
-        {% capture image_url %}/images/logo-{{brand}}.png{% endcapture %}
-        <div class="brands-strip__brand">
-            <img data-lazy={{image_url}} alt="{{brand}}"/>
+    <div class="container">
+        <h3 class="brands-strip__title">Save money on your monthly bills</h3>
+        <p class="brands-strip__subtitle">Benefit from access to the whole market</p>
+        <div class="brands-strip__lists">
+            {% for brand in brands %}
+            {% capture image_url %}/images/logo-{{brand}}.png{% endcapture %}
+            <div class="brands-strip__brand">
+                {%include picture.html url=image_url alt=brand %}
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
+{%endif%}

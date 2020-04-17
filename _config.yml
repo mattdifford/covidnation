@@ -15,6 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: lifeSOS
 email: info@zurugroup.com
+email_partnerships: parterships@lifesos.co.uk
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.lifesos.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -43,7 +44,7 @@ instagram_url: https://www.instagram.com/yourlifesos/
 youtube_url: CHANGE ME
 
 
-brands: '2u,afh,apple,barclaycard,gus,lgc,o2,ou,samsung,secretescapes,vitality,vodafone'
+brands: 'bt,origin,sky,britishgas,ps,eon,thinkmoney,barclaycard,vitality,vodafone,o2,samsung'
 # Mastodon instances
 # mastodon:
 # - username: jekyll

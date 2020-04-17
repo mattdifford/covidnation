@@ -31,37 +31,6 @@ $(document).ready(function () {
             $("html,body").animate({ scrollTop: $($(this).attr("href")).offset().top - 100 }, 750);
         }
     });
-    $('.brands-strip__lists').slick({
-        infinite: true,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1,
-        dots: false,
-        arrows: false,
-        speed: 1500,
-        lazyLoad: 'ondemand',
-        mobileFirst:true,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 5
-                }
-            },
-            {
-                breakpoint: 400,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 320,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
 });
 
 $.fn.serializeObject = function () {
