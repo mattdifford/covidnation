@@ -20,7 +20,7 @@
     justify-content: center;
     flex-wrap: wrap;
     @include in_size($md) {
-      padding: 25px 300px;
+      padding: 25px 150px;
     }
   }
   &__brand {

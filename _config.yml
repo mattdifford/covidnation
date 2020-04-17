@@ -44,7 +44,7 @@ instagram_url: https://www.instagram.com/yourlifesos/
 youtube_url: CHANGE ME
 
 
-brands: 'bt,sky,virgin,vodafone,britishgas,edf,npower,eon,prudential,lg,aviva,vitality'
+brands: 'bt,sky,virgin,vodafone,britishgas,edf,npower,eon,rl,lg,aviva,vitality'
 # Mastodon instances
 # mastodon:
 # - username: jekyll
