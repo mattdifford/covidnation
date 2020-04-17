@@ -44,7 +44,7 @@ instagram_url: https://www.instagram.com/yourlifesos/
 youtube_url: CHANGE ME
 
 
-brands: 'bt,origin,sky,britishgas,ps,eon,thinkmoney,barclaycard,vitality,vodafone,o2,samsung'
+brands: 'bt,sky,virgin,vodafone,britishgas,edf,npower,eon,prudential,lg,aviva,vitality'
 # Mastodon instances
 # mastodon:
 # - username: jekyll

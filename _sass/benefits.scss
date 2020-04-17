@@ -5,6 +5,14 @@
     display: flex;
     flex-wrap: wrap;
   }
+  &__title {
+    font-size: 35px;
+    line-height: 1;
+    margin: 0 0 30px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid $colour_primary;
+    display: inline-block;
+  }
   &__benefit {
     flex: 0 1 (100% / 4);
     padding: 25px;
