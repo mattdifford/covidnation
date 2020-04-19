@@ -43,6 +43,18 @@ a {
   margin: 25px 0;
   color: #fff;
   border-spacing: 0 5px;
+  &__header {
+    background-color: $colour_accent;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
+    &.tablesorter-headerDesc {
+      background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+    }
+    &.tablesorter-headerAsc {
+      background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+    }
+  }
   &__row {
     background: $colour_secondary;
     &:nth-child(odd) {

@@ -83,6 +83,7 @@ function handleDataTable(url) {
             });
             $repeater.before($new_row);
         });
+        $("#root").tablesorter();
     });
 }
 
