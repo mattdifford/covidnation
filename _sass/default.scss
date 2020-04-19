@@ -15,8 +15,10 @@ a {
   padding: 20px 0;
   background: $colour_secondary;
   display: block;
-  color: $colour_accent;
   box-shadow: 0 3px 6px 0 rgba(#000, 0.16);
+  a {
+    color: $colour_accent;
+  }
 }
 
 .footer {
