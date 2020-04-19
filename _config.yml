@@ -44,7 +44,16 @@ youtube_url: CHANGE ME
 plugins:
   - jekyll-include-cache
   - jekyll-webp
+  - jekyll-datapage-generator
 
+
+page_gen:
+  - index_files: false
+    data: countries
+    template: country
+    name: name
+    dir: country
+    
 ############################################################
 # Site configuration for the WebP Generator Plugin
 webp:
