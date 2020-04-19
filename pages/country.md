@@ -1,3 +1,4 @@
 ---
 layout: country
+permalink: /country/
 ---
