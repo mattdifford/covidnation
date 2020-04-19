@@ -26,6 +26,16 @@ a {
   color: #fff;
 }
 
+.button {
+  background: $colour_accent;
+  color: #fff;
+  padding: 5px 15px;
+  display: inline-block;
+  &:hover {
+    background: darken($colour_accent, 10%);
+  }
+}
+
 .data-table {
   width: 100%;
   margin: 25px 0;
@@ -42,9 +52,10 @@ a {
   }
   &__column,
   &__header {
-    padding: 10px;
+    padding: 10px 25px;
     text-align: left;
-    &--numeric {
+    &--numeric,
+    &--button {
       text-align: right;
     }
   }
@@ -70,5 +81,44 @@ a {
       border-left: none;
       border-top: none;
     }
+  }
+}
+
+.data-dashboard {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px;
+  }
+  &__intro {
+    margin-top: 20px;
+    border-radius: 10px;
+    color: #fff;
+    background: $colour_secondary;
+    padding: 10px;
+  }
+}
+
+.data-block {
+  padding: 20px;
+  flex: 0 1 20%;
+  &--template {
+    display: none;
+  }
+  &__inner {
+    padding: 20px;
+    background: $colour_secondary;
+    text-align: center;
+    border-radius: 10px;
+    height: 100%;
+  }
+  &__title {
+    font-size: 20px;
+    color: #fff;
+  }
+  &__value {
+    color: $colour_accent;
+    font-weight: 600;
+    font-size: 35px;
   }
 }

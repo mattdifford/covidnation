@@ -5,13 +5,14 @@
 <body>
     {%- include header.html -%}
     <div class="container">
-        {%- include table.html -%}
+        {%- include country.html -%}
     </div>
     {%- include footer.html -%}
     {%- include foot.html layout=page.layout -%}
     <script>
-        handleDataTable("{{site.api_url}}");
+        handleCountryData("{{site.api_url}}");
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 </body>
 
 </html>

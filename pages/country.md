@@ -1,0 +1,4 @@
+---
+layout: country
+permalink: /country
+---
