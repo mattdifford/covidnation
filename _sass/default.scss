@@ -99,6 +99,19 @@ a {
 }
 
 .data-dashboard {
+  position: relative;
+  &.loading {
+    &:before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: $colour_secondary;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
   &__wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -109,7 +122,10 @@ a {
     border-radius: 10px;
     color: #fff;
     background: $colour_secondary;
-    padding: 10px;
+    padding: 20px;
+  }
+  &__title {
+    margin-top: 0;
   }
 }
 
@@ -134,5 +150,17 @@ a {
     color: $colour_accent;
     font-weight: 600;
     font-size: 35px;
+  }
+}
+
+.data-chart {
+  width: 100%;
+  margin: 25px 0;
+  padding: 0 20px;
+  &--template {
+    display: none;
+  }
+  canvas {
+    background: #fff;
   }
 }

@@ -51,9 +51,14 @@ page_gen:
   - index_files: false
     data: countries
     template: country
-    name: name
+    name: title
     dir: country
-    
+  - index_files: false
+    data: countries
+    template: country_history
+    name_expr: record['name'] + "-history"
+    dir: country
+
 ############################################################
 # Site configuration for the WebP Generator Plugin
 webp:

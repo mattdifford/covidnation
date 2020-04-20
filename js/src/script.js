@@ -89,6 +89,7 @@ function handleDataTable(url) {
 
 function handleCountryData(main_url) {
     var current_country = window.location.pathname.split("/")[2];
+    $('.data-dashboard').addClass('loading');
     $.get(main_url, function (data) {
         data.forEach(function (element, index) {
             if (element["country"].toLowerCase().replace(" ", "-") === current_country) {
@@ -97,6 +98,7 @@ function handleCountryData(main_url) {
                 var date = new Date(element["lastUpdatedApify"]);
                 $('.data-dashboard__time span').html(date.toLocaleString());
                 $('.data-dashboard__source span').html(element["sourceUrl"]);
+                $('.data-dashboard__button').attr("href", window.location.pathname + "-history");
                 $.get(details_url, function (data) {
                     var ignore_columns = ["lastUpdatedAtApify", "readMe", "sourceUrl", "country", "lastUpdatedAtSource", "historyData"];
                     for (var prop in data) {
@@ -104,8 +106,7 @@ function handleCountryData(main_url) {
                             var $panel = $('#data_block_repeater').clone();
                             $panel.attr("id", "");
                             $panel.removeClass('data-block--template');
-                            var result = prop.replace(/([A-Z])/g, " $1");
-                            var finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+                            var finalResult = camelCaseToSentenceCase(prop);
                             $panel.find('.data-block__title').html(finalResult)
                             var value = data[prop];
                             if (typeof value === "number") {
@@ -116,7 +117,99 @@ function handleCountryData(main_url) {
                             $('#data_block_repeater').after($panel);
                         }
                     }
+                    $('.data-dashboard').removeClass('loading');
                 });
+            }
+        });
+    });
+}
+
+function camelCaseToSentenceCase(text) {
+    var a = text.replace(/([A-Z])/g, " $1")
+    return a.charAt(0).toUpperCase() + a.slice(1);
+}
+
+function handleCountryHistoryData(main_url) {
+    var current_country = window.location.pathname.split("/")[2].replace("-history", "");
+    $('.data-dashboard').addClass('loading');
+    $.get(main_url, function (data) {
+        data.forEach(function (element, index) {
+            if (element["country"].toLowerCase().replace(" ", "-") === current_country) {
+                var details_url = element["historyData"];
+                $('.data-dashboard__title span').html(element["country"]);
+                var date = new Date(element["lastUpdatedApify"]);
+                $('.data-dashboard__time span').html(date.toLocaleString());
+                $('.data-dashboard__source span').html(element["sourceUrl"]);
+                var datasets = [];
+                $.get(details_url, function (data) {
+                    var ignore_columns = ["lastUpdatedAtApify", "readMe", "sourceUrl", "country", "lastUpdatedAtSource", "historyData", "test"];
+                    for (var row in data) {
+                        var date = new Date(data[row]["lastUpdatedAtApify"]);
+                        var date_id = date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1) + "-" + date.getDate();
+                        for (var prop in data[row]) {
+                            //Manual corrections to property name. Not ideal, but necessary to consolidate field names which have changed over time
+                            var corrected_prop = prop.replace("scottland", "scotland");
+                            corrected_prop = corrected_prop.replace("Confirmed", "")
+                            if (corrected_prop === "ireland") {
+                                corrected_prop = "northernIreland";
+                            }
+                            //End of property corrections
+                            if (Object.prototype.hasOwnProperty.call(data[row], corrected_prop) && ignore_columns.indexOf(corrected_prop) == -1) {
+                                var value = data[row][corrected_prop];
+                                if (typeof value != "number") {
+                                    value = 0;
+                                }
+                                if (typeof datasets[corrected_prop] !== "undefined") {
+                                    if (typeof datasets[corrected_prop][date_id] !== "undefined") {
+                                        if (value > datasets[corrected_prop][date_id]) {
+                                            datasets[corrected_prop][date_id] = value;
+                                        }
+                                    } else {
+                                        datasets[corrected_prop][date_id] = value;
+                                    }
+                                } else {
+                                    datasets[corrected_prop] = [];
+                                    datasets[corrected_prop][date_id] = value;
+                                }
+                            }
+                        }
+                    }
+                    for (var dataset in datasets) {
+                        var $template = $('#data_chart_repeater');
+                        var $chart = $template.clone();
+                        $chart.removeClass('data-chart--template')
+                        var id = "data_chart_" + dataset;
+                        $chart.attr("id", "");
+                        var $canvas = $chart.find("canvas");
+                        $canvas.attr("id", id);
+                        $template.before($chart);
+                        var ctx = $canvas;
+                        var formatted_data = [];
+                        for (var data_row in datasets[dataset]) {
+                            var date = new Date(data_row);
+                            formatted_data.push({ x: date, y: parseInt(datasets[dataset][data_row]) });
+                        }
+                        var chart = new Chart(ctx, {
+                            type: 'line',
+                            data: formatted_data,
+                            options: {
+                                title: {
+                                    display: true,
+                                    text: camelCaseToSentenceCase(dataset)
+                                },
+                                scales: {
+                                    xAxes: [{
+                                        type: 'time',
+                                        distribution: 'series',
+                                    }]
+                                }
+                            }
+                        });
+
+                    }
+                    $('.data-dashboard').removeClass('loading');
+                });
+
             }
         });
     });
