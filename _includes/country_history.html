@@ -1,11 +1,16 @@
 <div class="data-dashboard">
     <div class="data-dashboard__intro">
-        <h1 class="data-dashboard__title">Historic Coronavirus data for <span></span></h1>
+        <h1 class="data-dashboard__title">Historic Coronavirus data for {{page.title}}</h1>
         <p class="data-dashboard__time">Last updated: <span></span></p>
-        <p class="data-dashboard__source">Source: <span></span></p>
     </div>
     <div class="data-dashboard__wrapper data-dashboard__wrapper--chart">
-        <div class="data-chart data-chart--template" id="data_chart_repeater">
+        <div class="data-chart" id="data_chart_all">
+        </div>
+        <div class="data-chart" id="data_chart_cases">
+        </div>
+        <div class="data-chart" id="data_chart_deaths">
+        </div>
+        <div class="data-chart" id="data_chart_recovered">
         </div>
     </div>
 </div>

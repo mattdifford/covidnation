@@ -136,7 +136,7 @@ function handleCountryData(slug, title) {
                             } else if (element["City"]) {
                                 title = element["City"];
                             } else {
-                                title= element["Country"]
+                                title = element["Country"]
                             }
                             $(this).html(title)
                         }
@@ -165,113 +165,104 @@ function camelCaseToSentenceCase(text) {
     return a.charAt(0).toUpperCase() + a.slice(1);
 }
 
-function handleCountryHistoryData(main_url) {
-    // var current_country = window.location.pathname.split("/")[2].replace("-history", "");
-    // $('.data-dashboard').addClass('loading');
-    // $.get(main_url, function (data) {
-    //     data.forEach(function (element, index) {
-    //         if (element["country"].toLowerCase().replace(" ", "-") === current_country) {
-    //             var details_url = element["historyData"];
-    //             $('.data-dashboard__title span').html(element["country"]);
-    //             var date = new Date(element["lastUpdatedApify"]);
-    //             $('.data-dashboard__time span').html(date.toLocaleString());
-    //             $('.data-dashboard__source span').html(element["sourceUrl"]);
-    //             var datasets = [];
-    //             $.get(details_url, function (data) {
-    //                 var ignore_columns = ["lastUpdatedAtApify", "readMe", "sourceUrl", "country", "lastUpdatedAtSource", "historyData", "test"];
-    //                 for (var row in data) {
-    //                     var date = new Date(data[row]["lastUpdatedAtApify"]);
-    //                     var date_id = date.getFullYear() + "-" + pad(parseInt(date.getMonth() + 1), 2) + "-" + pad(date.getDate(), 2);
-    //                     for (var prop in data[row]) {
-    //                         //Manual corrections to property name. Not ideal, but necessary to consolidate field names which have changed over time
-    //                         var corrected_prop = prop.replace("scottland", "scotland");
-    //                         corrected_prop = corrected_prop.replace("Confirmed", "");
-    //                         if (corrected_prop === "infected") {
-    //                             corrected_prop = "totalInfected";
-    //                         }
-    //                         if (corrected_prop === "ireland") {
-    //                             corrected_prop = "northernIreland";
-    //                         }
-    //                         //End of property corrections
-    //                         if (Object.prototype.hasOwnProperty.call(data[row], corrected_prop) && ignore_columns.indexOf(corrected_prop) == -1) {
-    //                             var value = data[row][corrected_prop];
-    //                             if (typeof value != "number") {
-    //                                 value = 0;
-    //                             }
-    //                             if (typeof datasets[corrected_prop] !== "undefined") {
-    //                                 if (typeof datasets[corrected_prop][date_id] !== "undefined") {
-    //                                     if (value > datasets[corrected_prop][date_id]) {
-    //                                         datasets[corrected_prop][date_id] = value;
-    //                                     }
-    //                                 } else {
-    //                                     datasets[corrected_prop][date_id] = value;
-    //                                 }
-    //                             } else {
-    //                                 datasets[corrected_prop] = [];
-    //                                 datasets[corrected_prop][date_id] = value;
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //                 for (var dataset in datasets) {
-    //                     var $template = $('#data_chart_repeater');
-    //                     var $chart = $template.clone();
-    //                     $chart.removeClass('data-chart--template')
-    //                     var id = "data_chart_" + dataset;
-    //                     $chart.attr("id", "");
-    //                     $template.before($chart);
-    //                     var data = new google.visualization.DataTable();
+function handleCountryHistoryData(slug, title) {
+    var url = "https://api.covid19api.com/total/dayone/country/" + slug;
+    $('.data-dashboard').addClass('loading');
+    var materialOptions = {
+        backgroundColor: '#1D1D1D',
+        colors: ['#1e88e5', '#f44336', '#fbc02d'],
+        fontName: 'objektiv-mk2, sans-serif',
+        height: 500,
+        vAxis: {
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        hAxis: {
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        legend: {
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        titleTextStyle: {
+            fontSize: 20,
+            color: '#fff',
+            bold: true,
+        },
+        chart: {
+            title: 'Coronavirus data for ' + title
+        },
+    };
+    $.get(url, function (element) {
+        $('.data-chart').each(function () {
+            var data;
+            data = new google.visualization.DataTable();
+            data.addColumn('date', "Date");
+            switch ($(this).attr("id")) {
+                case "data_chart_all": {
+                    data.addColumn('number', "Confirmed cases");
+                    data.addColumn('number', "Deaths");
+                    data.addColumn('number', "Recovered");
+                    element.forEach(function (item) {
+                        var date = new Date(item["Date"]);
+                        $('.data-dashboard__time span').html(date.toLocaleString());
+                        data.addRows([
+                            [new Date(item["Date"]), item["Confirmed"], item["Deaths"], item["Recovered"]]
+                        ]);
+                    })
+                    var chart = new google.charts.Line($('#data_chart_all')[0]);
+                    chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    break;
+                }
+                case "data_chart_cases": {
+                    data.addColumn('number', "Confirmed cases");
+                    element.forEach(function (item) {
+                        var date = new Date(item["Date"]);
+                        data.addRows([
+                            [new Date(item["Date"]), item["Confirmed"]]
+                        ]);
+                    })
+                    var chart = new google.charts.Line($('#data_chart_cases')[0]);
+                    materialOptions.chart.title = 'Coronavirus data for ' + title + " - Cases"
+                    chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    break;
+                }
+                case "data_chart_deaths": {
+                    data.addColumn('number', "Deaths");
+                    element.forEach(function (item) {
+                        var date = new Date(item["Date"]);
+                        data.addRows([
+                            [new Date(item["Date"]), item["Deaths"]]
+                        ]);
+                    })
+                    materialOptions.chart.title = 'Coronavirus data for ' + title + " - Deaths"
+                    var chart = new google.charts.Line($('#data_chart_deaths')[0]);
+                    chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    break;
+                }
+                case "data_chart_recovered": {
+                    data.addColumn('number', "Recovered");
+                    element.forEach(function (item) {
+                        var date = new Date(item["Date"]);
+                        data.addRows([
+                            [new Date(item["Date"]), item["Recovered"]]
+                        ]);
+                    })
+                    materialOptions.chart.title = 'Coronavirus data for ' + title + " - Recoveries"
+                    var chart = new google.charts.Line($('#data_chart_recovered')[0]);
+                    chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    break;
+                }
+            }
 
-    //                     data.addColumn('date', "Date");
-    //                     data.addColumn('number', camelCaseToSentenceCase(dataset));
-    //                     var total = 0;
-    //                     for (var data_row in datasets[dataset]) {
-    //                         total += parseInt(datasets[dataset][data_row]);
-    //                         data.addRows([
-    //                             [new Date(data_row), parseInt(datasets[dataset][data_row])]
-    //                         ]);
-    //                     }
-    //                     var materialOptions = {
-    //                         backgroundColor: '#1D1D1D',
-    //                         colors: ['#1e88e5'],
-    //                         fontName: 'objektiv-mk2, sans-serif',
-    //                         height: 500,
-    //                         vAxis: {
-    //                             textStyle: {
-    //                                 color: '#fff'
-    //                             }
-    //                         },
-    //                         hAxis: {
-    //                             textStyle: {
-    //                                 color: '#fff'
-    //                             }
-    //                         },
-    //                         legend: {
-    //                             textStyle: {
-    //                                 color: '#fff'
-    //                             }
-    //                         },
-    //                         titleTextStyle: {
-    //                             fontSize: 20,
-    //                             color: '#fff',
-    //                             bold: true,
-    //                         },
-    //                         chart: {
-    //                             title: camelCaseToSentenceCase(dataset)
-    //                         },
-    //                     };
-    //                     if (total > 0) {
 
-    //                     }
-    //                     var chart = new google.charts.Line($chart[0]);
-    //                     chart.draw(data, google.charts.Line.convertOptions(materialOptions));
-    //                 }
-    //                 $('.data-dashboard').removeClass('loading');
-    //             });
-
-    //         }
-    //     });
-    // });
+        });
+        $('.data-dashboard').removeClass('loading');
+    });
 }
 
 function pad(n, width, z) {

@@ -14,9 +14,9 @@
     {%- include foot.html layout="country_history" -%}
     <script>
         google.charts.load('current', { 'packages': ['line'] });
-        google.charts.setOnLoadCallback(chartInit());
+        google.charts.setOnLoadCallback(chartInit);
         function chartInit() {
-            handleCountryHistoryData("{{site.api_url}}");
+            handleCountryHistoryData("{{page.name | replace: '-history.html', ''}}", "{{page.title}}");
         }
     </script>
 </body>
