@@ -1,3 +1,7 @@
 <footer class="footer">
-    <p>Data sourced from: <a href="https://covid19api.com/" target="_blank" rel="external noopener">https://covid19api.com/</a></p>
+    <div class="footer__wrapper">
+        <p>Data sourced from: <a href="https://covid19api.com/" target="_blank"
+                rel="external noopener">https://covid19api.com/</a></p>
+        {% include social_shares.html url=include.url%}
+    </div>
 </footer>

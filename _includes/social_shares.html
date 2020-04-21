@@ -1,0 +1,12 @@
+{%capture tweet_text%}Check out {{site.title}}{%endcapture%}
+{%capture tweet_text_formatted%}{{tweet_text | url_encode }}{%endcapture%}
+{% capture url %}{{site.url}}/{{include.url}}{%endcapture%}
+<div class="social-share">
+    <div class="fb-share-button" data-href="{{url}}" data-layout="button"
+        data-size="large"><a target="_blank"
+            href="https://www.facebook.com/sharer/sharer.php?u={{url | url_encode}}&amp;src=sdkpreparse"
+            class="fb-xfbml-parse-ignore">Share</a></div>
+    <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{tweet_text_formatted}}"
+        data-size="large">
+        Tweet</a>
+</div>

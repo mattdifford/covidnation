@@ -16,8 +16,19 @@ a {
   background: $colour_secondary;
   display: block;
   box-shadow: 0 3px 6px 0 rgba(#000, 0.16);
-  a {
+  h1 a {
     color: $colour_accent;
+  }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__nav {
+    &-link {
+      font-size: 19px;
+      color: #fff;
+    }
   }
 }
 
@@ -25,10 +36,19 @@ a {
   display: block;
 }
 .footer {
-  padding: 20px;
+  padding: 20px 50px;
   background: $colour_secondary;
   display: block;
   color: #fff;
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.social-share {
+  display: flex;
+  align-items: center;
 }
 
 .button {
