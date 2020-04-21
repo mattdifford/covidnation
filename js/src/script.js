@@ -157,6 +157,7 @@ function handleCountryData(slug, title) {
         }
 
         $('.data-dashboard').removeClass('loading');
+        $("#root").tablesorter();
     });
 }
 

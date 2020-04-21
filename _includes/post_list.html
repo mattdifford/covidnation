@@ -1,0 +1,15 @@
+<div class="post-list">
+    <h1 class="post-list__title">Latest news from {{site.title}}</h1>
+    <div class="post-list__list">
+        {% for post in site.posts %}
+        <div class="post-list__list-item post-item">
+            <a class="post-item__inner" href="{{post.url}}" title="{{post.title}}">
+                {% include picture.html url=post.image alt=post.title %}
+                <h3 class="post-item__title">{{post.title}}</h3>
+                <p>{{post.excerpt}}</p>
+                <span class="button">Read more</span>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>

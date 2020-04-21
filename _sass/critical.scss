@@ -1,17 +1,10 @@
-.header-image {
-  height: 100vh;
-  background: $colour_primary;
-  &__logo,
-  &__content {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out 0.2s;
-  }
-}
 .header,
-.content-wrapper {
+.content-wrapper,
+.footer {
   display: none;
 }
 
 body {
   margin: 0;
+  background: $colour_primary;
 }

@@ -1,0 +1,13 @@
+<picture {% if include.class %} class="{{-include.class -}}" {%endif%}>
+    {%if include.type %}
+    {%assign type=include.type%}
+    {%else%}
+    {%-assign type = include.url | slice: -3, 3-%}
+    {%endif%}
+    {%-assign url = include.url | trim remove: '.png' remove: '.jpg'-%}
+    {%-assign url = url | remove: '.png'-%}
+    {%-assign url = url |  remove: '.jpg'-%}
+    {%-capture url_full -%}{{-url-}}.{{-type-}}{%-endcapture-%}
+    <source data-srcset="{{-url-}}.webp" type="image/webp">
+    <img data-src="{{-url_full-}}" alt="{{-include.alt-}}" class="lazyload" src="/images/transparent.png">
+</picture>
