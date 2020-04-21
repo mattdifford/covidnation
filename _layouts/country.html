@@ -4,13 +4,16 @@
 
 <body>
     {%- include header.html -%}
-    <div class="container">
-        {%- include country.html -%}
+    <div class="content-wrapper">
+        <div class="container">
+            {%- include country.html -%}
+        </div>
     </div>
     {%- include footer.html -%}
     {%- include foot.html layout=page.layout -%}
     <script>
-        handleCountryData("{{site.api_url}}");
+        handleCountryData("{{page.name | replace: '.html', ''}}", "{{page.title}}");
+
     </script>
 </body>
 

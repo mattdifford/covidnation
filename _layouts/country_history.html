@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en-gb">
-{%-include head.html title="1"-%}
+{%-include head.html -%}
 
 <body>
     {%- include header.html -%}
-    <div class="container">
-        {%- include country_history.html -%}
+    <div class="content-wrapper">
+        <div class="container">
+            {%- include country_history.html -%}
+        </div>
     </div>
     {%- include footer.html -%}
-    {%- include foot.html layout=page.layout -%}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    {%- include foot.html layout="country_history" -%}
     <script>
-        handleCountryHistoryData("{{site.api_url}}");
+        google.charts.load('current', { 'packages': ['line'] });
+        google.charts.setOnLoadCallback(chartInit());
+        function chartInit() {
+            handleCountryHistoryData("{{site.api_url}}");
+        }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 </body>
 
 </html>

@@ -1,16 +1,54 @@
 <div class="data-dashboard">
     <div class="data-dashboard__intro">
-        <h1 class="data-dashboard__title">Coronavirus data for <span></span></h1>
-        <p class="data-dashboard__time">Last updated: <span></span></p>
-        <p class="data-dashboard__source">Source: <span></span></p>
-        <p class="data-dashboard__link"><a href="" class="button data-dashboard__button">View historic data</a></p>
-    </div>
-    <div class="data-dashboard__wrapper">
-        <div class="data-block data-block--template" id="data_block_repeater">
-            <div class="data-block__inner">
-                <h2 class="data-block__title"></h2>
-                <p class="data-block__value"></p>
+        <h1 class="data-dashboard__title">Live Covid-19 data for {{page.title}}</h1>
+        <p class="data-dashboard__time">Data since: <span></span></p>
+        <p class="data-dashboard__link"><a href="#" class="button data-dashboard__button">View historic data</a></p>
+        <div class="data-dashboard__group data-dashboard__group--total">
+            <h2 class="data-dashboard__group-title"></h2>
+            <div class="data-block" data-column="Active">
+                <div class="data-block__inner">
+                    <h2 class="data-block__title">Active Cases</h2>
+                    <p class="data-block__value"></p>
+                </div>
+            </div>
+            <div class="data-block" data-column="Confirmed">
+                <div class="data-block__inner">
+                    <h2 class="data-block__title">Confirmed Cases</h2>
+                    <p class="data-block__value"></p>
+                </div>
+            </div>
+            <div class="data-block" data-column="Deaths">
+                <div class="data-block__inner">
+                    <h2 class="data-block__title">Deaths</h2>
+                    <p class="data-block__value"></p>
+                </div>
+            </div>
+            <div class="data-block" data-column="Recovered">
+                <div class="data-block__inner">
+                    <h2 class="data-block__title">Recoveries</h2>
+                    <p class="data-block__value"></p>
+                </div>
             </div>
         </div>
     </div>
+    <table class="data-table" id="root">
+        <thead>
+            <tr class="data-table__header">
+                <th class="data-table__header">Province/City</th>
+                <th class="data-table__header data-table__header--numeric">Active cases</th>
+                <th class="data-table__header data-table__header--numeric">Confirmed cases</th>
+                <th class="data-table__header data-table__header--numeric">Deaths</th>
+                <th class="data-table__header data-table__header--numeric">Recoveries</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="data-table__row data-table__row--template" id="table-repeater">
+                <td data-column="Province/City" class="data-table__column data-table__column--title"></td>
+                <td data-column="Active" class="data-table__column data-table__column--numeric"></td>
+                <td data-column="Confirmed" class="data-table__column data-table__column--numeric"></td>
+                <td data-column="Deaths" class="data-table__column data-table__column--numeric"></td>
+                <td data-column="Recovered" class="data-table__column data-table__column--numeric"></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

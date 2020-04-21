@@ -17,7 +17,7 @@ title: CovidNation
 email: info@zurugroup.com
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.covidnation.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
-api_url: https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true
+api_url: https://api.covid19api.com/summary
 
 # Build settings
 theme: minima
@@ -51,7 +51,7 @@ page_gen:
   - index_files: false
     data: countries
     template: country
-    name: title
+    name: name
     dir: country
   - index_files: false
     data: countries

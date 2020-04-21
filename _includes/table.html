@@ -1,23 +1,68 @@
+<div class="data-table__intro">
+    <h1 class="data-table__title">Global Covid-19 data</h1>
+    <p class="data-table__time">Last updated: <span></span></p>
+    <div class="data-table__global">
+        <div class="data-table__global-item" data-column="NewConfirmed">
+            <div>
+                <h3>New cases</h3>
+                <span></span>
+            </div>
+        </div>
+        <div class="data-table__global-item" data-column="NewDeaths">
+            <div>
+                <h3>New deaths</h3>
+                <span></span>
+            </div>
+        </div>
+        <div class="data-table__global-item" data-column="NewRecovered">
+            <div>
+                <h3>New recoveries</h3>
+                <span></span>
+            </div>
+        </div>
+        <div class="data-table__global-item" data-column="TotalConfirmed">
+            <div>
+                <h3>Total cases</h3>
+                <span></span>
+            </div>
+        </div>
+        <div class="data-table__global-item" data-column="TotalDeaths">
+            <div>
+                <h3>Total deaths</h3>
+                <span></span>
+            </div>
+        </div>
+        <div class="data-table__global-item" data-column="TotalRecovered">
+            <div>
+                <h3>Total recoveries</h3>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <table class="data-table" id="root">
     <thead>
         <tr class="data-table__header">
             <th class="data-table__header">Country</th>
-            <th class="data-table__header data-table__header--numeric">Tested</th>
-            <th class="data-table__header data-table__header--numeric">Infected</th>
-            <th class="data-table__header data-table__header--numeric">Deceased</th>
-            <th class="data-table__header data-table__header--numeric">Recovered</th>
-            <th class="data-table__header">Last updated</th>
-            <th class="data-table__header"></th>
+            <th class="data-table__header data-table__header--numeric">New cases</th>
+            <th class="data-table__header data-table__header--numeric">New deaths</th>
+            <th class="data-table__header data-table__header--numeric">New recoveries</th>
+            <th class="data-table__header data-table__header--numeric">Total cases</th>
+            <th class="data-table__header data-table__header--numeric">Total deaths</th>
+            <th class="data-table__header data-table__header--numeric">Total recoveries</th>
+            <th class="data-table__header data-table__header--empty"></th>
         </tr>
     </thead>
     <tbody>
         <tr class="data-table__row data-table__row--template" id="table-repeater">
-            <td data-column="country" class="data-table__column"></td>
-            <td data-column="tested" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="infected" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="deceased" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="recovered" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="lastUpdatedApify" class="data-table__column data-table__column--datetime"></td>
+            <td data-column="Country" class="data-table__column data-table__column--title"></td>
+            <td data-column="NewConfirmed" class="data-table__column data-table__column--numeric"></td>
+            <td data-column="NewDeaths" class="data-table__column data-table__column--numeric"></td>
+            <td data-column="NewRecovered" class="data-table__column data-table__column--numeric"></td>
+            <td data-column="TotalConfirmed" class="data-table__column data-table__column--numeric"></td>
+            <td data-column="TotalDeaths" class="data-table__column data-table__column--numeric"></td>
+            <td data-column="TotalRecovered" class="data-table__column data-table__column--numeric"></td>
             <td data-column="url" class="data-table__column data-table__column--button"></td>
         </tr>
     </tbody>
