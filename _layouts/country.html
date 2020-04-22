@@ -3,13 +3,13 @@
 {%-include head.html title="1"-%}
 
 <body>
-    {%- include header.html -%}
+    {%- include_cached header.html -%}
     <div class="content-wrapper">
         <div class="container">
             {%- include country.html -%}
         </div>
     </div>
-    {%- include footer.html url=page.permalink  -%}
+    {%- include_cached footer.html url=page.permalink  -%}
     {%- include foot.html layout="country" -%}
     <script>
         handleCountryData("{{page.name | replace: '.html', ''}}", "{{page.title}}");

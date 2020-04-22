@@ -3,13 +3,13 @@
 {%-include head.html -%}
 
 <body>
-    {%- include header.html -%}
+    {%- include_cached header.html -%}
     <div class="content-wrapper">
         <div class="container">
             {%- include country_history.html -%}
         </div>
     </div>
-    {%- include footer.html url=page.permalink -%}
+    {%- include_cached footer.html url=page.permalink -%}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     {%- include foot.html layout="country_history" -%}
     <script>

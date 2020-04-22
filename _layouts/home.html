@@ -3,13 +3,13 @@
 {%-include head.html-%}
 
 <body>
-    {%- include header.html -%}
+    {%- include_cached header.html -%}
     <div class="content-wrapper">
         <div class="container">
             {%- include table.html -%}
         </div>
     </div>
-    {%- include footer.html url=page.permalink  -%}
+    {%- include_cached footer.html url=page.permalink  -%}
     {%- include foot.html layout=page.layout -%}
     <script>
         handleDataTable("{{site.api_url}}");

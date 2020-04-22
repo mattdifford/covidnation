@@ -18,8 +18,13 @@ a {
   box-shadow: $box_shadow;
   h1 {
     margin: 0;
+    font-family: $font_title;
+    font-weight: 800;
+    font-size: 45px;
+    line-height: 1;
     a {
       color: $colour_accent;
+      transition: color 0.2s ease-in-out 0s;
       &:hover {
         color: $colour_accent_light;
       }
@@ -34,6 +39,7 @@ a {
     &-link {
       font-size: 19px;
       color: $colour_dark_grey;
+      transition: color 0.2s ease-in-out 0s;
       &:hover {
         color: $colour_accent;
       }

@@ -40,6 +40,10 @@ facebook_url: https://www.facebook.com/yourlifesos
 instagram_url: https://www.instagram.com/yourlifesos/
 youtube_url: CHANGE ME
 
+collections:
+  posts:
+    output: true
+    permalink: /latest/:title
 
 plugins:
   - jekyll-include-cache

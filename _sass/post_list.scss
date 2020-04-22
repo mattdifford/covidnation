@@ -4,7 +4,7 @@
   padding: 20px;
   border-radius: 10px;
   &__title {
-    color: #fff;
+    color: $colour_dark_grey;
   }
   &__list {
     margin: 0 -20px;
@@ -20,7 +20,7 @@
 .post-item {
   &__inner {
     padding: 20px;
-    color: #fff;
+    color: $colour_dark_grey;
     border-radius: 10px;
     background: lighten($colour_secondary, 10%);
     display: inline-block;
@@ -28,6 +28,7 @@
     height: 100%;
     border: 3px solid lighten($colour_secondary, 10%);
     transition: border-color 0.2s ease-in-out 0s;
+    box-shadow: $box_shadow;
     picture,
     img {
       max-width: 100%;
