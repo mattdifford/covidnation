@@ -9,7 +9,7 @@
             {%- include country.html -%}
         </div>
     </div>
-    {%- include_cached footer.html url=page.permalink  -%}
+    {%- include_cached footer.html url=page.url  -%}
     {%- include foot.html layout="country" -%}
     <script>
         handleCountryData("{{page.name | replace: '.html', ''}}", "{{page.title}}");
