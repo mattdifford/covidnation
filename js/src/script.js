@@ -31,6 +31,17 @@ $(document).ready(function () {
             $("html,body").animate({ scrollTop: $($(this).attr("href")).offset().top - 100 }, 750);
         }
     });
+
+    $(window).scroll(function (e) {
+        var $el = $('.data-table');
+        var isFixed = ($el.hasClass('is-fixed'));
+        if ($(this).scrollTop() > $el.offset().top && !isFixed) {
+            $el.addClass('is-fixed')
+        }
+        if ($(this).scrollTop() < $el.offset().top && isFixed) {
+            $el.removeClass('is-fixed')
+        }
+    });
 });
 
 $.fn.serializeObject = function () {
@@ -170,28 +181,38 @@ function handleCountryHistoryData(slug, title) {
     var url = "https://api.covid19api.com/total/dayone/country/" + slug;
     $('.data-dashboard').addClass('loading');
     var materialOptions = {
-        backgroundColor: '#1D1D1D',
+        backgroundColor: '#fff',
         colors: ['#1e88e5', '#f44336', '#fbc02d'],
-        fontName: 'objektiv-mk2, sans-serif',
+        fontName: 'source-sans-pro, sans-serif',
         height: 500,
         vAxis: {
+            title: 'Count',
             textStyle: {
-                color: '#fff'
+                fontSize: 15,
+                color: '#212020'
+            },
+            titleTextStyle: {
+                fontSize: 18
             }
         },
         hAxis: {
             textStyle: {
-                color: '#fff'
+                fontSize: 15,
+                color: '#212020'
+            },
+            titleTextStyle: {
+                fontSize: 18
             }
         },
         legend: {
+            position: 'bottom',
             textStyle: {
-                color: '#fff'
+                color: '#212020'
             }
         },
         titleTextStyle: {
             fontSize: 20,
-            color: '#fff',
+            color: '#212020',
             bold: true,
         },
         chart: {
@@ -229,6 +250,7 @@ function handleCountryHistoryData(slug, title) {
                     })
                     var chart = new google.charts.Line($('#data_chart_cases')[0]);
                     materialOptions.chart.title = 'Coronavirus data for ' + title + " - Cases"
+                    materialOptions.colors = ['#1e88e5'];
                     chart.draw(data, google.charts.Line.convertOptions(materialOptions));
                     break;
                 }
@@ -241,6 +263,7 @@ function handleCountryHistoryData(slug, title) {
                         ]);
                     })
                     materialOptions.chart.title = 'Coronavirus data for ' + title + " - Deaths"
+                    materialOptions.colors = ['#f44336'];
                     var chart = new google.charts.Line($('#data_chart_deaths')[0]);
                     chart.draw(data, google.charts.Line.convertOptions(materialOptions));
                     break;
@@ -254,6 +277,7 @@ function handleCountryHistoryData(slug, title) {
                         ]);
                     })
                     materialOptions.chart.title = 'Coronavirus data for ' + title + " - Recoveries"
+                    materialOptions.colors = ['#fbc02d'];
                     var chart = new google.charts.Line($('#data_chart_recovered')[0]);
                     chart.draw(data, google.charts.Line.convertOptions(materialOptions));
                     break;

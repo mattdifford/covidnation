@@ -56,14 +56,20 @@
     </thead>
     <tbody>
         <tr class="data-table__row data-table__row--template" id="table-repeater">
-            <td data-column="Country" class="data-table__column data-table__column--title"></td>
-            <td data-column="NewConfirmed" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="NewDeaths" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="NewRecovered" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="TotalConfirmed" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="TotalDeaths" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="TotalRecovered" class="data-table__column data-table__column--numeric"></td>
-            <td data-column="url" class="data-table__column data-table__column--button"></td>
+            <td data-column="Country" data-title="Country" class="data-table__column data-table__column--title"></td>
+            <td data-column="NewConfirmed" data-title="New cases"
+                class="data-table__column data-table__column--numeric"></td>
+            <td data-column="NewDeaths" data-title="New deaths" class="data-table__column data-table__column--numeric">
+            </td>
+            <td data-column="NewRecovered" data-title="New recoveries"
+                class="data-table__column data-table__column--numeric"></td>
+            <td data-column="TotalConfirmed" data-title="Total cases"
+                class="data-table__column data-table__column--numeric"></td>
+            <td data-column="TotalDeaths" data-title="Total deaths"
+                class="data-table__column data-table__column--numeric"></td>
+            <td data-column="TotalRecovered" data-title="Total recoveries"
+                class="data-table__column data-table__column--numeric"></td>
+            <td data-column="url" data-title="" class="data-table__column data-table__column--button"></td>
         </tr>
     </tbody>
 </table>

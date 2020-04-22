@@ -15,9 +15,15 @@ a {
   padding: 20px 0;
   background: $colour_secondary;
   display: block;
-  box-shadow: 0 3px 6px 0 rgba(#000, 0.16);
-  h1 a {
-    color: $colour_accent;
+  box-shadow: $box_shadow;
+  h1 {
+    margin: 0;
+    a {
+      color: $colour_accent;
+      &:hover {
+        color: $colour_accent_light;
+      }
+    }
   }
   &__wrapper {
     display: flex;
@@ -27,7 +33,10 @@ a {
   &__nav {
     &-link {
       font-size: 19px;
-      color: #fff;
+      color: $colour_dark_grey;
+      &:hover {
+        color: $colour_accent;
+      }
     }
   }
 }
@@ -39,7 +48,7 @@ a {
   padding: 20px 50px;
   background: $colour_secondary;
   display: block;
-  color: #fff;
+  color: $colour_dark_grey;
   &__wrapper {
     display: flex;
     justify-content: space-between;

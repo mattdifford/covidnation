@@ -10,7 +10,7 @@
         </div>
     </div>
     {%- include footer.html url=page.permalink  -%}
-    {%- include foot.html layout=page.layout -%}
+    {%- include foot.html layout="country" -%}
     <script>
         handleCountryData("{{page.name | replace: '.html', ''}}", "{{page.title}}");
 
