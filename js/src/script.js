@@ -229,57 +229,81 @@ function handleCountryHistoryData(slug, title) {
                     data.addColumn('number', "Confirmed cases");
                     data.addColumn('number', "Deaths");
                     data.addColumn('number', "Recovered");
+                    var total = 0;
                     element.forEach(function (item) {
                         var date = new Date(item["Date"]);
                         $('.data-dashboard__time span').html(date.toLocaleString());
+                        total += (item["Confirmed"] + item["Deaths"] + item["Recovered"]);
                         data.addRows([
                             [new Date(item["Date"]), item["Confirmed"], item["Deaths"], item["Recovered"]]
                         ]);
                     })
-                    var chart = new google.charts.Line($('#data_chart_all')[0]);
-                    chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    if (total > 0) {
+                        var chart = new google.charts.Line($('#data_chart_all')[0]);
+                        chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    } else {
+                        $('#data_chart_all').addClass('hidden');
+                    }
                     break;
                 }
                 case "data_chart_cases": {
                     data.addColumn('number', "Confirmed cases");
+                    var total = 0;
                     element.forEach(function (item) {
                         var date = new Date(item["Date"]);
+                        total += item["Confirmed"];
                         data.addRows([
                             [new Date(item["Date"]), item["Confirmed"]]
                         ]);
                     })
-                    var chart = new google.charts.Line($('#data_chart_cases')[0]);
                     materialOptions.chart.title = 'Coronavirus data for ' + title + " - Cases"
                     materialOptions.colors = ['#1e88e5'];
-                    chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    if (total > 0) {
+                        var chart = new google.charts.Line($('#data_chart_cases')[0]);
+                        chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    } else {
+                        $('#data_chart_cases').addClass('hidden');
+                    }
                     break;
                 }
                 case "data_chart_deaths": {
                     data.addColumn('number', "Deaths");
+                    var total = 0;
                     element.forEach(function (item) {
                         var date = new Date(item["Date"]);
+                        total += item["Deaths"];
                         data.addRows([
                             [new Date(item["Date"]), item["Deaths"]]
                         ]);
                     })
                     materialOptions.chart.title = 'Coronavirus data for ' + title + " - Deaths"
                     materialOptions.colors = ['#f44336'];
-                    var chart = new google.charts.Line($('#data_chart_deaths')[0]);
-                    chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    if (total > 0) {
+                        var chart = new google.charts.Line($('#data_chart_deaths')[0]);
+                        chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    } else {
+                        $('#data_chart_deaths').addClass('hidden');
+                    }
                     break;
                 }
                 case "data_chart_recovered": {
                     data.addColumn('number', "Recovered");
+                    var total = 0;
                     element.forEach(function (item) {
                         var date = new Date(item["Date"]);
+                        total += item["Recovered"];
                         data.addRows([
                             [new Date(item["Date"]), item["Recovered"]]
                         ]);
                     })
                     materialOptions.chart.title = 'Coronavirus data for ' + title + " - Recoveries"
                     materialOptions.colors = ['#fbc02d'];
-                    var chart = new google.charts.Line($('#data_chart_recovered')[0]);
-                    chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    if (total > 0) {
+                        var chart = new google.charts.Line($('#data_chart_recovered')[0]);
+                        chart.draw(data, google.charts.Line.convertOptions(materialOptions));
+                    } else {
+                        $('#data_chart_recovered').addClass('hidden');
+                    }
                     break;
                 }
             }

@@ -224,7 +224,8 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: $box_shadow;
-  &--template {
+  &--template,
+  &.hidden {
     display: none;
   }
 }
