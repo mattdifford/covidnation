@@ -64,7 +64,7 @@
       background: darken(#fff, 2%);
     }
     &--template {
-      display: none;
+      display: none !important;
     }
   }
   &__column,
@@ -82,34 +82,155 @@
       text-align: right;
     }
   }
-  &.is-fixed {
-    &:before {
-      content: "";
-      display: block;
-      width: 100%;
-      position: fixed;
-      height: 50px;
-      top: 0;
-      left: 0;
-      background: $colour_accent;
-    }
-    .data-table {
-      &__row {
-        &:first-child {
-          .data-table {
-            &__column {
-              &:before {
-                content: attr(data-title);
-                background: $colour_accent;
-                color: #fff;
-                display: block;
-                position: fixed;
-                font-weight: 700;
-                top: 12.5px;
+  @include in_size($sm) {
+    &.is-fixed {
+      &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        position: fixed;
+        height: 50px;
+        top: 0;
+        left: 0;
+        background: $colour_accent;
+      }
+      .data-table {
+        &__row {
+          &:first-child {
+            .data-table {
+              &__column {
+                &:before {
+                  content: attr(data-title);
+                  background: $colour_accent;
+                  color: #fff;
+                  display: block;
+                  position: fixed;
+                  font-weight: 700;
+                  top: 12.5px;
+                }
               }
             }
           }
         }
+      }
+    }
+  }
+  @include in_size($md-only) {
+    &__header,
+    &__column {
+      padding: 10px 20px 10px 10px;
+    }
+    &__global {
+      margin: 0 -10px;
+      &-item {
+        margin: 0 10px;
+      }
+    }
+  }
+  @include in_size($mobile) {
+    &__global {
+      flex-wrap: wrap;
+      margin: 0 -10px;
+      &-item {
+        flex: 0 1 (100% / 3);
+        margin: 0;
+        padding: 10px;
+      }
+    }
+  }
+  @include in_size($xs) {
+    display: block;
+    &__global {
+      &-item {
+        flex: 0 1 50%;
+        > div {
+          padding: 15px;
+          h3 {
+            font-size: 16px;
+          }
+          span {
+            font-size: 23px;
+          }
+        }
+      }
+    }
+    tbody,
+    thead {
+      display: block;
+    }
+    &__header-row {
+      display: flex;
+      flex-wrap: wrap;
+      &:before {
+        content: "Sort by:";
+        flex: 0 1 100%;
+      }
+    }
+    &__header {
+      flex: 0 1 100%;
+      padding: 10px 0 10px 25px;
+      background-color: transparent;
+      color: $colour_accent;
+      text-align: left;
+      background-position: left center;
+    }
+    &__row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+    &__column {
+      position: relative;
+      padding: 10px 25px 10px 200px;
+      flex: 0 1 50%;
+      border-top: 1px solid $colour_light_grey;
+      border-radius: 0 !important;
+      &:first-child {
+        border-top: none;
+      }
+      &:before {
+        content: attr(data-title);
+        display: flex;
+        align-items: center;
+        color: #fff;
+        background: $colour_accent;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 10px 25px;
+        width: 175px;
+        text-align: left;
+        height: 100%;
+      }
+      &--title {
+        flex: 0 1 100%;
+        text-align: right;
+      }
+      &--button {
+        padding-left: 25px;
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+  @include in_size($xxs) {
+    &__column {
+      flex: 0 1 100%;
+      padding-left: 115px;
+      padding-right: 10px;
+      &--title {
+        font-size: 15px;
+      }
+      &:before {
+        padding: 10px 5px;
+        font-size: 14px;
+        width: 107px;
+      }
+    }
+    &__global {
+      &-item {
+        flex: 0 1 100%;
       }
     }
   }
@@ -189,13 +310,31 @@
   &__title {
     margin-top: 0;
   }
+  @include in_size($mobile) {
+    &__group {
+      margin: 0 -10px;
+    }
+    &__intro {
+      .data-block {
+        padding: 10px;
+        flex: 0 1 50%;
+      }
+    }
+  }
+  @include in_size($xxs) {
+    &__intro {
+      .data-block {
+        flex: 0 1 100%;
+      }
+    }
+  }
 }
 
 .data-block {
   padding: 0 20px;
   flex: 0 1 20%;
   &--template {
-    display: none;
+    display: none !important;
   }
   &__inner {
     padding: 20px;
@@ -227,5 +366,8 @@
   &--template,
   &.hidden {
     display: none;
+  }
+  @include in_size($mobile) {
+    padding: 15px;
   }
 }

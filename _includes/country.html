@@ -33,7 +33,7 @@
     </div>
     <table class="data-table" id="root">
         <thead>
-            <tr class="data-table__header">
+            <tr class="data-table__header-row">
                 <th class="data-table__header">Province/City</th>
                 <th class="data-table__header data-table__header--numeric">Active cases</th>
                 <th class="data-table__header data-table__header--numeric">Confirmed cases</th>
@@ -43,11 +43,16 @@
         </thead>
         <tbody>
             <tr class="data-table__row data-table__row--template" id="table-repeater">
-                <td data-column="Province/City" class="data-table__column data-table__column--title"></td>
-                <td data-column="Active" class="data-table__column data-table__column--numeric"></td>
-                <td data-column="Confirmed" class="data-table__column data-table__column--numeric"></td>
-                <td data-column="Deaths" class="data-table__column data-table__column--numeric"></td>
-                <td data-column="Recovered" class="data-table__column data-table__column--numeric"></td>
+                <td data-column="Province/City" data-title="Province/City"
+                    class="data-table__column data-table__column--title"></td>
+                <td data-column="Active" data-title="Active cases"
+                    class="data-table__column data-table__column--numeric"></td>
+                <td data-column="Confirmed" data-title="Confirmed cases"
+                    class="data-table__column data-table__column--numeric"></td>
+                <td data-column="Deaths" data-title="Deaths" class="data-table__column data-table__column--numeric">
+                </td>
+                <td data-column="Recovered" data-title="Recovered"
+                    class="data-table__column data-table__column--numeric"></td>
             </tr>
         </tbody>
     </table>

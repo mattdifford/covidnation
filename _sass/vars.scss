@@ -2,7 +2,7 @@ $colour_primary: #efefef;
 $colour_secondary: lighten(#ccc, 10%);
 $colour_accent: #1e88e5;
 $colour_accent_light: lighten($colour_accent, 10%);
-$colour_light_grey: #424242;
+$colour_light_grey: darken(#ccc, 10%);
 $colour_dark_grey: #212020;
 
 $box_shadow: 0px 3px 6px 0px rgba(#000, 0.16);

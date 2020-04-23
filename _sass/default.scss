@@ -45,6 +45,14 @@ a {
       }
     }
   }
+  @include in_size($xs) {
+    &__wrapper {
+      flex-wrap: wrap;
+    }
+    &__nav {
+      margin-top: 10px;
+    }
+  }
 }
 
 .content-wrapper {
@@ -59,6 +67,11 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  @include in_size($xs) {
+    &__wrapper {
+      flex-wrap: wrap;
+    }
   }
 }
 .social-share {
