@@ -133,11 +133,15 @@ function handleCountryData(slug, title) {
     $.get(url, function (data) {
         var $repeater = $('#table-repeater');
         if (data.length > 1) {
+            window.map_items = {};
             data.forEach(function (element) {
+                var title = (element["Province"] ? element["Province"] : element["City"]);
+                window.map_items[title] = element;
+                window.map_items[title]["title"] = title;
                 var $group = root.clone();
                 $group.attr("id", "");
                 $group.removeClass('data-dashboard__group--template');
-                $group.find('.data-dashboard__group-title').html((element["Province"] ? element["Province"] : element["City"]));
+                $group.find('.data-dashboard__group-title').html(title);
                 var $new_row = $repeater.clone();
                 $new_row.attr("id", "");
                 $new_row.removeClass('data-table__row--template');
@@ -188,6 +192,7 @@ function handleCountryData(slug, title) {
         }
 
         $('.data-dashboard').removeClass('loading');
+        handleMapData();
         $("#root").tablesorter();
     });
 }
@@ -351,8 +356,9 @@ function handleMapData() {
         document.getElementById('mapContainer'),
         defaultLayers.vector.normal.map,
         {
-            zoom: 1,
-            center: { lat: 52.5, lng: 13.4 }
+            center: { lat: 0, lng: 0 },
+            zoom: 2.5,
+            padding: { top: 50, left: 50, bottom: 50, right: 50 }
         });
     window.addEventListener('resize', () => map.getViewPort().resize());
     var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
@@ -379,9 +385,7 @@ function handleMapData() {
      */
     function addInfoBubble(map) {
         var group = new H.map.Group();
-
         map.addObject(group);
-
         // add 'tap' event listener, that opens info bubble, to the group
         group.addEventListener('tap', function (evt) {
             // event target is the marker itself, group is a parent event target
@@ -397,9 +401,26 @@ function handleMapData() {
 
         $.each(window.map_items, function (index) {
             var item = window.map_items[index];
-            var html = '<p><strong>Country: </strong>' + item["Country"] + '</p><p><strong>Total cases: </strong>' + item["TotalConfirmed"] + '</p>';
-            addMarkerToGroup(group, { lat: item["lat"], lng: item["lng"] }, html)
+            var html = '';
+            var lat, lng;
+            if (typeof item["title"] != "undefined") {
+                html += '<p>' + item["title"] + '</p>';
+                html += '<p><strong>Total cases: </strong>' + item["Confirmed"].toLocaleString() + '</p>';
+                lat = item["Lat"];
+                lng = item["Lon"];
+            } else {
+                html += '<p><strong>Country: </strong>' + item["Country"] + '</p>';
+                html += '<p><strong>Total cases: </strong>' + item["TotalConfirmed"].toLocaleString() + '</p>';
+                lat = item["lat"];
+                lng = item["lng"];
+            }
+            addMarkerToGroup(group, { lat: lat, lng: lng }, html)
         });
+        if (group.getObjects().length < 20) {
+            map.getViewModel().setLookAtData({
+                bounds: group.getBoundingBox()
+            });
+        }
     }
 }
 
