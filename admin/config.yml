@@ -4,15 +4,14 @@ backend:
 
 media_folder: "img/uploads" # Folder where user uploaded files should go
 
-collections: # A list of collections the CMS should be able to edit
-  - name: "page"
-    label: "Page"
-    folder: "pages"
-    sort: "title:asc"
-    create: true
-    slug: "{{slug}}"
+collections:
+  - name: 'blog'
+    label: 'Blog'
+    folder: '_posts/'
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "page"}
-      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
-      - {label: "Permalink", name: "permalink", widget: "hidden"}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
+      - { label: 'Image', name: 'image', widget: 'image' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      
+      

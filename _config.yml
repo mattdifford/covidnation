@@ -100,4 +100,4 @@ webp:
   append_ext: false
 ############################################################
 
-data_source: data
+data_dir: data
