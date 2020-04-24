@@ -403,7 +403,7 @@ function handleMapData() {
             var item = window.map_items[index];
             var html = '';
             var lat, lng;
-            if (typeof item["title"] != "undefined") {
+            if (typeof item["Confirmed"] != "undefined") {
                 html += '<p>' + item["title"] + '</p>';
                 html += '<p><strong>Total cases: </strong>' + item["Confirmed"].toLocaleString() + '</p>';
                 lat = item["Lat"];
@@ -411,6 +411,7 @@ function handleMapData() {
             } else {
                 html += '<p><strong>Country: </strong>' + item["Country"] + '</p>';
                 html += '<p><strong>Total cases: </strong>' + item["TotalConfirmed"].toLocaleString() + '</p>';
+                html += '<p><a href="' + item["url"] + '" class="button">View more</a>';
                 lat = item["lat"];
                 lng = item["lng"];
             }
