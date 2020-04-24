@@ -59,7 +59,12 @@ $.fn.serializeObject = function () {
     });
     return o;
 };
-
+window.map_items = {};
+$.get("/data/countries.json", function (data) {
+    data.forEach(function (element) {
+        window.map_items[element["title"]] = element;
+    });
+});
 
 function handleDataTable(url) {
     var $repeater = $('#table-repeater');
@@ -69,6 +74,7 @@ function handleDataTable(url) {
             $(this).find("span").html(value.toLocaleString());
         });
         data["Countries"].forEach(function (element, index) {
+
             if ($('.data-table__time span').html() === "") {
                 var date = new Date(element['Date']);
                 $('.data-table__time span').html(date.toLocaleString())
@@ -81,23 +87,37 @@ function handleDataTable(url) {
                 var name = $(this).attr("data-column");
                 if (typeof element[name] !== "undefined") {
                     if (typeof element[name] == "number") {
+                        if (typeof window.map_items[element["Country"]] != "undefined") {
+                            window.map_items[element["Country"]][name] = element[name].toLocaleString();
+                        }
                         $(this).html(element[name].toLocaleString());
                     } else {
                         if (element[name] === "NA") {
+                            if (typeof window.map_items[element["Country"]] != "undefined") {
+                                window.map_items[element["Country"]][name] = "No data";
+                            }
                             $(this).html("No data");
                         } else {
+                            if (typeof window.map_items[element["Country"]] != "undefined") {
+                                window.map_items[element["Country"]][name] = (element[name] ? element[name] : "No data");
+                            }
                             $(this).html((element[name] ? element[name] : "No data"));
                         }
                     }
                 } else {
                     if (name === "url") {
+                        if (typeof window.map_items[element["Country"]] != "undefined") {
+                            window.map_items[element["Country"]][name] = '/country/' + element["Slug"];
+                        }
                         $(this).html('<a class="button" href="/country/' + element["Slug"] + '">View more</a>')
                     }
                 }
             });
             $repeater.before($new_row);
         });
+
         $("#root").tablesorter();
+        handleMapData();
     });
 }
 
@@ -156,13 +176,13 @@ function handleCountryData(slug, title) {
                 $repeater.before($new_row);
             });
             $('.data-dashboard__group--total .data-block').each(function () {
-                var value = totals[$(this).attr("data-column")];
+                var value = parseInt(totals[$(this).attr("data-column")]);
                 $(this).find('.data-block__value').html(value.toLocaleString());
             });
         } else {
             $('.data-table').hide();
             $('.data-dashboard__group--total .data-block').each(function () {
-                var value = data[0][$(this).attr("data-column")];
+                var value = parseInt(data[0][$(this).attr("data-column")]);
                 $(this).find('.data-block__value').html(value.toLocaleString());
             });
         }
@@ -319,3 +339,67 @@ function pad(n, width, z) {
     n = n + '';
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
+
+function handleMapData() {
+    var platform = new H.service.Platform({
+        'apikey': 'tOTHW976fXmXtqazsg-9tNhPxAk4BJjr9QkmEoxrrLo'
+    });
+    var defaultLayers = platform.createDefaultLayers();
+
+    // Instantiate (and display) a map object:
+    var map = new H.Map(
+        document.getElementById('mapContainer'),
+        defaultLayers.vector.normal.map,
+        {
+            zoom: 1,
+            center: { lat: 52.5, lng: 13.4 }
+        });
+    window.addEventListener('resize', () => map.getViewPort().resize());
+    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    var ui = H.ui.UI.createDefault(map, defaultLayers);
+    addInfoBubble(map);
+    /**
+     * Creates a new marker and adds it to a group
+     * @param {H.map.Group} group       The group holding the new marker
+     * @param {H.geo.Point} coordinate  The location of the marker
+     * @param {String} html             Data associated with the marker
+     */
+    function addMarkerToGroup(group, coordinate, html) {
+        var svgMarkup = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="10" stroke="#212020" stroke-width="1" fill="#1e88e5" /></svg>';
+        var icon = new H.map.Icon(svgMarkup);
+        var marker = new H.map.Marker(coordinate, { icon: icon });
+        // add custom data to the marker
+        marker.setData(html);
+        group.addObject(marker);
+    }
+
+    /**
+     * Clicking on a marker opens an infobubble which holds HTML content related to the marker.
+     * @param  {H.Map} map      A HERE Map instance within the application
+     */
+    function addInfoBubble(map) {
+        var group = new H.map.Group();
+
+        map.addObject(group);
+
+        // add 'tap' event listener, that opens info bubble, to the group
+        group.addEventListener('tap', function (evt) {
+            // event target is the marker itself, group is a parent event target
+            // for all objects that it contains
+            var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
+                // read custom data
+                content: evt.target.getData(),
+            });
+            bubble.addClass('map-bubble');
+            // show info bubble
+            ui.addBubble(bubble);
+        }, false);
+
+        $.each(window.map_items, function (index) {
+            var item = window.map_items[index];
+            var html = '<p><strong>Country: </strong>' + item["Country"] + '</p><p><strong>Total cases: </strong>' + item["TotalConfirmed"] + '</p>';
+            addMarkerToGroup(group, { lat: item["lat"], lng: item["lng"] }, html)
+        });
+    }
+}
+

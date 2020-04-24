@@ -4,12 +4,14 @@
 
 <body>
     {%- include_cached header.html -%}
-    <div class="content-wrapper">
-        <div class="container">
-            {%- include table.html -%}
-        </div>
+    <div class="container">
+        {%- include table.html -%}
     </div>
     {%- include_cached footer.html url=page.permalink  -%}
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
     {%- include foot.html layout=page.layout -%}
     <script>
         handleDataTable("{{site.api_url}}");

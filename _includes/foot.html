@@ -24,6 +24,7 @@
         document.createStyleSheet("/assets/css/default.css");
         document.createStyleSheet("/assets/css/{{include.layout}}.css");
         document.createStyleSheet("https://use.typekit.net/lit6dia.css");
+        document.createStyleSheet("https://js.api.here.com/v3/3.1/mapsjs-ui.css");
     } else {
         var stylesheet_bs = document.createElement('link');
         stylesheet_bs.href = "/assets/css/bootstrap.css";
@@ -49,9 +50,13 @@
         stylesheet_font.rel = 'stylesheet';
         stylesheet_font.type = 'text/css';
         document.getElementsByTagName('head')[0].appendChild(stylesheet_font);
-    }
 
-    $('body').trigger('styles_loaded');
+        var stylesheet_map = document.createElement('link');
+        stylesheet_map.href = "https://js.api.here.com/v3/3.1/mapsjs-ui.css";
+        stylesheet_map.rel = 'stylesheet';
+        stylesheet_map.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(stylesheet_map);
+    }
 
 
 </script>

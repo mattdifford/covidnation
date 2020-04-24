@@ -3,6 +3,7 @@
   margin: 25px 0;
   color: $colour_dark_grey;
   border-spacing: 0 5px;
+  display: table;
   &__global {
     display: flex;
     margin: 0 -20px;
@@ -36,6 +37,7 @@
     background: #fff;
     padding: 20px;
     box-shadow: $box_shadow;
+    display: block;
     h1 {
       margin-top: 0;
     }
@@ -369,5 +371,29 @@
   }
   @include in_size($mobile) {
     padding: 15px;
+  }
+}
+
+.data-map {
+  margin-top: 25px;
+}
+.map-bubble {
+  .H_ib_body {
+    border-radius: 10px;
+    p {
+      margin: 0;
+      line-height: 1.1;
+      + p {
+        margin-top: 10px;
+      }
+    }
+  }
+  .H_ib_content {
+    margin: 15px 10px 10px;
+    font-family: $font_primary;
+  }
+  .H_ib_close {
+    top: 5px;
+    right: 5px;
   }
 }
