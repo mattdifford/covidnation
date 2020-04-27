@@ -59,78 +59,80 @@ $.fn.serializeObject = function () {
     });
     return o;
 };
-window.map_items = {};
-$.get("/data/countries.json", function (data) {
-    data.forEach(function (element) {
-        window.map_items[element["title"]] = element;
-    });
-});
+
 
 function handleDataTable(url) {
-    var $repeater = $('#table-repeater');
-    $.get(url, function (data) {
-        $('.data-table__global-item').each(function () {
-            var value = data["Global"][$(this).attr("data-column")];
-            $(this).find("span").html(value.toLocaleString());
+    window.map_items = {};
+    $.get("/data/countries.json", function (data) {
+        data.forEach(function (element) {
+            window.map_items[element["title"]] = element;
         });
-        data["Countries"].forEach(function (element, index) {
-            $.ajax({
-                url: 'https://restcountries.eu/rest/v2/alpha/' + element["CountryCode"].toLowerCase() + '?fields=population',
-                type: 'get',
-                success: function (response) {
-                    var population = response["population"];
-                    var cases = element["TotalConfirmed"];
-                    var cpm = cases / (population / 1000000);
-                    $('#' + element["Slug"]).find('td[data-column="cpm"]').html(cpm.toFixed(2).toLocaleString());
-                },
-                error: function () {
-                    
-                }
-            })
-
-            if ($('.data-table__time span').html() === "") {
-                var date = new Date(element['Date']);
-                $('.data-table__time span').html(date.toLocaleString())
-            }
-            var $new_row = $repeater.clone();
-            $new_row.attr("id", element["Slug"]);
-            $new_row.removeClass('data-table__row--template');
-            var columns = $new_row.find('.data-table__column');
-            columns.each(function () {
-                var name = $(this).attr("data-column");
-                if (typeof element[name] !== "undefined") {
-                    if (typeof element[name] == "number") {
-                        if (typeof window.map_items[element["Country"]] != "undefined") {
-                            window.map_items[element["Country"]][name] = element[name].toLocaleString();
-                        }
-                        $(this).html(element[name].toLocaleString());
-                    } else {
-                        if (element[name] === "NA") {
-                            if (typeof window.map_items[element["Country"]] != "undefined") {
-                                window.map_items[element["Country"]][name] = "No data";
-                            }
-                            $(this).html("No data");
-                        } else {
-                            if (typeof window.map_items[element["Country"]] != "undefined") {
-                                window.map_items[element["Country"]][name] = (element[name] ? element[name] : "No data");
-                            }
-                            $(this).html((element[name] ? element[name] : "No data"));
-                        }
-                    }
-                } else {
-                    if (name === "url") {
-                        if (typeof window.map_items[element["Country"]] != "undefined") {
-                            window.map_items[element["Country"]][name] = '/country/' + element["Slug"];
-                        }
-                        $(this).html('<a class="button" href="/country/' + element["Slug"] + '">View more</a>')
-                    }
-                }
+    }).done(function () {
+        var $repeater = $('#table-repeater');
+        $.get(url, function (data) {
+            $('.data-table__global-item').each(function () {
+                var value = data["Global"][$(this).attr("data-column")];
+                $(this).find("span").html(value.toLocaleString());
             });
-            $repeater.before($new_row);
-        });
+            data["Countries"].forEach(function (element, index) {
+                $.ajax({
+                    url: 'https://restcountries.eu/rest/v2/alpha/' + element["CountryCode"].toLowerCase() + '?fields=population',
+                    type: 'get',
+                    success: function (response) {
+                        var population = response["population"];
+                        var cases = element["TotalConfirmed"];
+                        var cpm = cases / (population / 1000000);
+                        $('#' + element["Slug"]).find('td[data-column="cpm"]').html(cpm.toFixed(2).toLocaleString());
+                    },
+                    error: function () {
+                        return false;
+                    }
+                })
 
-        $("#root").tablesorter();
-        handleMapData();
+                if ($('.data-table__time span').html() === "") {
+                    var date = new Date(element['Date']);
+                    $('.data-table__time span').html(date.toLocaleString())
+                }
+                var $new_row = $repeater.clone();
+                $new_row.attr("id", element["Slug"]);
+                $new_row.removeClass('data-table__row--template');
+                var columns = $new_row.find('.data-table__column');
+                columns.each(function () {
+                    var name = $(this).attr("data-column");
+                    if (typeof element[name] !== "undefined") {
+                        if (typeof element[name] == "number") {
+                            if (typeof window.map_items[element["Country"]] != "undefined") {
+                                window.map_items[element["Country"]][name] = element[name].toLocaleString();
+                            }
+                            $(this).html(element[name].toLocaleString());
+                        } else {
+                            if (element[name] === "NA") {
+                                if (typeof window.map_items[element["Country"]] != "undefined") {
+                                    window.map_items[element["Country"]][name] = "No data";
+                                }
+                                $(this).html("No data");
+                            } else {
+                                if (typeof window.map_items[element["Country"]] != "undefined") {
+                                    window.map_items[element["Country"]][name] = (element[name] ? element[name] : "No data");
+                                }
+                                $(this).html((element[name] ? element[name] : "No data"));
+                            }
+                        }
+                    } else {
+                        if (name === "url") {
+                            if (typeof window.map_items[element["Country"]] != "undefined") {
+                                window.map_items[element["Country"]][name] = '/country/' + element["Slug"];
+                            }
+                            $(this).html('<a class="button" href="/country/' + element["Slug"] + '">View more</a>')
+                        }
+                    }
+                });
+                $repeater.before($new_row);
+            });
+
+            $("#root").tablesorter();
+            handleMapData();
+        });
     });
 }
 
