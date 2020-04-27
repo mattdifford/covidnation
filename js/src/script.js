@@ -199,7 +199,7 @@ function handleCountryData(slug, title) {
                 $(this).find('.data-block__value').html(value.toLocaleString());
             });
         } else {
-            $('.data-table').hide();
+            $('.data-table, .data-map').hide();
             $('.data-dashboard__group--total .data-block').each(function () {
                 var value = parseInt(data[0][$(this).attr("data-column")]);
                 $(this).find('.data-block__value').html(value.toLocaleString());
