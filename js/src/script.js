@@ -82,7 +82,12 @@ function handleDataTable(url) {
                         var population = response["population"];
                         var cases = element["TotalConfirmed"];
                         var cpm = cases / (population / 1000000);
-                        $('#' + element["Slug"]).find('td[data-column="cpm"]').html(cpm.toFixed(2).toLocaleString());
+                        var value = cpm.toFixed(2).toLocaleString();
+                        if (value === "NaN") {
+                            value = 0.00;
+                        }
+                        $('#' + element["Slug"]).find('td[data-column="cpm"]').html(value);
+                        $("#root").trigger("updateAll");
                     },
                     error: function () {
                         return false;
