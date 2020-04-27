@@ -74,13 +74,18 @@ function handleDataTable(url) {
             $(this).find("span").html(value.toLocaleString());
         });
         data["Countries"].forEach(function (element, index) {
-
+            $.get('https://restcountries.eu/rest/v2/alpha/' + element["CountryCode"].toLowerCase() + '?fields=population', function (response) {
+                var population = response["population"];
+                var cases = element["TotalConfirmed"];
+                var cpm = cases / (population / 1000000);
+                $('#' + element["Slug"]).find('td[data-column="cpm"]').html(cpm.toFixed(2).toLocaleString());
+            });
             if ($('.data-table__time span').html() === "") {
                 var date = new Date(element['Date']);
                 $('.data-table__time span').html(date.toLocaleString())
             }
             var $new_row = $repeater.clone();
-            $new_row.attr("id", "");
+            $new_row.attr("id", element["Slug"]);
             $new_row.removeClass('data-table__row--template');
             var columns = $new_row.find('.data-table__column');
             columns.each(function () {
