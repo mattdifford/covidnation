@@ -413,7 +413,7 @@ function handleMapData() {
                 html += '<p><strong>Total cases: </strong>' + item["Confirmed"].toLocaleString() + '</p>';
                 lat = item["Lat"];
                 lng = item["Lon"];
-            } else {
+            } else if (typeof item["TotalConfirmed"] != "undefined") {
                 html += '<p><strong>Country: </strong>' + item["Country"] + '</p>';
                 html += '<p><strong>Total cases: </strong>' + item["TotalConfirmed"].toLocaleString() + '</p>';
                 html += '<p><a href="' + item["url"] + '" class="button">View more</a>';
@@ -422,7 +422,7 @@ function handleMapData() {
             }
             addMarkerToGroup(group, { lat: lat, lng: lng }, html)
         });
-        if (group.getObjects().length < 20) {
+        if (group.getObjects().length < 20 && group.getBoundingBox() !== null) {
             map.getViewModel().setLookAtData({
                 bounds: group.getBoundingBox()
             });
