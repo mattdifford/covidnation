@@ -1,0 +1,37 @@
+.news-block {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: $box_shadow;
+  padding: 20px;
+  margin: 25px 0;
+  &__list {
+    margin: 0 -15px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__item {
+    margin: 25px 0 0;
+    flex: 0 1 50%;
+    padding: 0 15px;
+    display: flex;
+    &-title {
+      margin: 0;
+    }
+    &-link {
+      height: 100%;
+      background: $colour_secondary;
+      border-radius: 10px;
+      box-shadow: $box_shadow;
+      padding: 20px;
+      color: #000;
+      display: inline-block;
+      width: 100%;
+      &:hover {
+        color: $colour_accent;
+      }
+    }
+    @include in_size($mobile) {
+      flex: 0 1 100%;
+    }
+  }
+}

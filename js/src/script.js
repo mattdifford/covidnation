@@ -141,18 +141,27 @@ function handleDataTable(url) {
     });
 }
 
-function handleCountryData(slug, title) {
+function handleCountryData(slug, title, offset) {
+    if (typeof offset === "undefined") {
+        offset = 1;
+    }
     var date = new Date();
-    date.setDate(date.getDate() - 1);
+    date.setTime(date.getTime() - (86400000 * offset));
     var url = "https://api.covid19api.com/live/country/" + slug + "/status/confirmed/date/" + date.toISOString();
     $('.data-dashboard').addClass('loading');
     $('.data-dashboard__time span').html(date.toLocaleString());
     $('.data-dashboard__button').attr("href", "/country/" + slug + "-history");
     var root = $('#data_block_group_repeater');
     var totals = [];
+
     $.get(url, function (data) {
         var $repeater = $('#table-repeater');
         if (data.length > 1) {
+            $.get('https://restcountries.eu/rest/v2/alpha/' + data[0]["CountryCode"].toLowerCase() + '?fields=languages;alpha2Code', function (response) {
+                var lang_code = response["languages"][0]["iso639_1"];
+                var alpha2_code = response["alpha2Code"];
+                handleNewsPanel(lang_code, alpha2_code);
+            });
             window.map_items = {};
             data.forEach(function (element) {
                 var title = (element["Province"] ? element["Province"] : element["City"]);
@@ -204,11 +213,15 @@ function handleCountryData(slug, title) {
                 $(this).find('.data-block__value').html(value.toLocaleString());
             });
         } else {
-            $('.data-table, .data-map').hide();
-            $('.data-dashboard__group--total .data-block').each(function () {
-                var value = parseInt(data[0][$(this).attr("data-column")]);
-                $(this).find('.data-block__value').html(value.toLocaleString());
-            });
+            if (data.length > 0) {
+                $('.data-table, .data-map').hide();
+                $('.data-dashboard__group--total .data-block').each(function () {
+                    var value = parseInt(data[0][$(this).attr("data-column")]);
+                    $(this).find('.data-block__value').html(value.toLocaleString());
+                });
+            } else {
+                handleCountryData(slug, title, offset + 1);
+            }
         }
 
         $('.data-dashboard').removeClass('loading');
@@ -445,3 +458,16 @@ function handleMapData() {
     }
 }
 
+function handleNewsPanel(langCode, countryCode) {
+    var url = "https://news.google.com/rss/topics/CAAqIggKIhxDQkFTRHdvSkwyMHZNREZqY0hsNUVnSmxiaWdBUAE?hl=" + langCode + "-" + countryCode + "&gl=" + countryCode;
+    $('.news-block__wrapper').rss(url, {
+        limit: 10,
+        support: false,
+        layoutTemplate: "<div class='news-block__list'>{entries}</div>",
+        entryTemplate: '<div class="news-block__item"><a href="{url}" target="_blank" rel="noopener external" class="news-block__item-link"><span class="news-block__item-date">{date}</span><h3 class="news-block__item-title">{title}</h3></a></div>',
+        dateFormatFunction: function (date) {
+            var date_obj = new Date(date);
+            return date_obj.toLocaleString()
+        },
+    });
+}
