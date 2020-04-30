@@ -463,6 +463,7 @@ function handleNewsPanel(langCode, countryCode) {
     $('.news-block__wrapper').rss(url, {
         limit: 10,
         support: false,
+        ssl: true,
         layoutTemplate: "<div class='news-block__list'>{entries}</div>",
         entryTemplate: '<div class="news-block__item"><a href="{url}" target="_blank" rel="noopener external" class="news-block__item-link"><span class="news-block__item-date">{date}</span><h3 class="news-block__item-title">{title}</h3></a></div>',
         dateFormatFunction: function (date) {
