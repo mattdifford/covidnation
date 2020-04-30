@@ -212,6 +212,9 @@ function handleCountryData(slug, title, offset) {
                 var value = parseInt(totals[$(this).attr("data-column")]);
                 $(this).find('.data-block__value').html(value.toLocaleString());
             });
+            $('.data-dashboard').removeClass('loading');
+            handleMapData();
+            $("#root").tablesorter();
         } else {
             if (data.length > 0) {
                 $('.data-table, .data-map').hide();
@@ -219,14 +222,15 @@ function handleCountryData(slug, title, offset) {
                     var value = parseInt(data[0][$(this).attr("data-column")]);
                     $(this).find('.data-block__value').html(value.toLocaleString());
                 });
+                $('.data-dashboard').removeClass('loading');
+                handleMapData();
+                $("#root").tablesorter();
             } else {
                 handleCountryData(slug, title, offset + 1);
             }
         }
 
-        $('.data-dashboard').removeClass('loading');
-        handleMapData();
-        $("#root").tablesorter();
+
     });
 }
 
